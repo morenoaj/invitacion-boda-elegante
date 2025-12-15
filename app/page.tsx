@@ -363,8 +363,285 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Sección de Código de Vestimenta */}
+      <section className="py-20 px-4 bg-gradient-to-b from-crema to-crema-dark">
+        <motion.div
+          className="max-w-md mx-auto text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Marco Superior */}
+          <div className="mb-8">
+            <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
+              <path 
+                d="M10,30 Q40,10 125,30 Q210,50 240,30" 
+                fill="none" 
+                stroke="#D4AF37" 
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+
+          {/* Título */}
+          <h2 className="font-great-vibes text-5xl text-dorado mb-8">Código de Vestimenta</h2>
+
+          {/* Iconos de Vestimenta */}
+          <div className="flex justify-center gap-6 mb-8">
+            <motion.div
+              className="text-6xl"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              👗
+            </motion.div>
+            <motion.div
+              className="text-6xl"
+              whileHover={{ scale: 1.2, rotate: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              🤵
+            </motion.div>
+          </div>
+
+          <div className="space-y-6 px-4">
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-rojo-suave/30">
+              <h3 className="font-montserrat text-lg tracking-wider text-dorado-dark mb-4">
+                ETIQUETA FORMAL
+              </h3>
+              <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent mb-4"></div>
+              <p className="font-montserrat text-sm tracking-wide text-gray-700 leading-relaxed">
+                Para las damas: Vestidos largos o midi elegantes<br/>
+                Para los caballeros: Traje formal
+              </p>
+            </div>
+
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-rojo-suave/30">
+              <h3 className="font-montserrat text-base tracking-wide text-dorado-dark mb-3">
+                💕 Por favor evita 💕
+              </h3>
+              <div className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent mb-4"></div>
+              <p className="font-montserrat text-sm tracking-wide text-gray-700 leading-relaxed">
+                Para mantener la armonía del evento,<br/>
+                te pedimos evitar vestir de:
+              </p>
+              <p className="font-montserrat text-base font-semibold text-dorado mt-3">
+                Blanco, Marfil, Nude y Dorado
+              </p>
+            </div>
+          </div>
+
+          {/* Marco Inferior */}
+          <div className="mt-12">
+            <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
+              <path 
+                d="M10,30 Q40,50 125,30 Q210,10 240,30" 
+                fill="none" 
+                stroke="#D99999" 
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Sección de Itinerario del Día */}
+      <section className="py-20 px-4 bg-gradient-to-b from-crema-dark to-crema">
+        <motion.div
+          className="max-w-md mx-auto text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Marco Superior */}
+          <div className="mb-8">
+            <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
+              <path 
+                d="M10,30 Q40,10 125,30 Q210,50 240,30" 
+                fill="none" 
+                stroke="#D4AF37" 
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+
+          {/* Título */}
+          <h2 className="font-great-vibes text-5xl text-dorado mb-4">Itinerario del Día</h2>
+          <p className="font-montserrat text-sm italic text-gray-600 mb-10">
+            Así será nuestro día especial
+          </p>
+
+          {/* Timeline */}
+          <div className="space-y-6 px-4">
+            {[
+              { time: "5:00 PM", icon: "💒", event: "Ceremonia religiosa" },
+              { time: "6:00 PM", icon: "🥂", event: "Cóctel de bienvenida" },
+              { time: "6:30 PM", icon: "🍽️", event: "Recepción y cena" },
+              { time: "8:00 PM", icon: "💃", event: "Baile y fiesta" },
+              { time: "11:00 PM", icon: "🎆", event: "Cierre con sorpresa" }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-dorado/20 flex items-center gap-4"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="text-4xl">{item.icon}</div>
+                <div className="flex-1 text-left">
+                  <p className="font-montserrat text-lg font-bold text-dorado tracking-wider">
+                    {item.time}
+                  </p>
+                  <p className="font-montserrat text-sm text-gray-700">
+                    {item.event}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Nota Importante */}
+          <motion.div
+            className="mt-10 bg-gradient-to-r from-rojo-suave/20 to-dorado/20 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-rojo-suave/30"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <p className="font-montserrat text-sm font-semibold text-dorado-dark mb-2">
+              ⏰ Importante
+            </p>
+            <p className="font-montserrat text-sm text-gray-700 leading-relaxed">
+              Por favor llega con 15 minutos de anticipación<br/>
+              para que no te pierdas ningún momento especial 💕
+            </p>
+          </motion.div>
+
+          {/* Marco Inferior */}
+          <div className="mt-12">
+            <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
+              <path 
+                d="M10,30 Q40,50 125,30 Q210,10 240,30" 
+                fill="none" 
+                stroke="#D99999" 
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Sección de Galería de Imágenes */}
+      <section className="py-20 px-4 bg-gradient-to-b from-crema to-crema-dark">
+        <motion.div
+          className="max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Marco Superior */}
+          <div className="mb-8">
+            <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
+              <path 
+                d="M10,30 Q40,10 125,30 Q210,50 240,30" 
+                fill="none" 
+                stroke="#D4AF37" 
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+
+          {/* Título */}
+          <h2 className="font-great-vibes text-5xl text-dorado mb-12 text-center">
+            Nuestros Momentos
+          </h2>
+
+          {/* Grid de Galería */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-4">
+            {[1, 2, 3, 4, 5, 6].map((item, index) => (
+              <motion.div
+                key={index}
+                className="relative aspect-square overflow-hidden rounded-lg shadow-lg border-4 border-dorado/30 group"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                {/* Placeholder con gradiente elegante */}
+                <div className="w-full h-full bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
+                  <div className="text-center">
+                    <svg 
+                      className="w-16 h-16 mx-auto text-dorado/40 mb-2" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={1.5} 
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" 
+                      />
+                    </svg>
+                    <p className="text-xs font-montserrat text-dorado-dark opacity-60">
+                      Foto {item}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Overlay con efecto hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dorado/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                  <p className="text-white font-montserrat text-xs tracking-wider drop-shadow-lg">
+                    💕
+                  </p>
+                </div>
+
+                {/* Comentario: Para agregar tus fotos, reemplaza el div del placeholder con:
+                    <img 
+                      src={`/images/gallery/foto-${item}.jpg`}
+                      alt={`Foto ${item}`}
+                      className="w-full h-full object-cover"
+                    />
+                */}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Nota sobre cómo agregar fotos */}
+          <motion.div
+            className="mt-10 bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-rojo-suave/30 text-center max-w-md mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <p className="font-montserrat text-xs text-gray-600 italic">
+              💡 Tip: Agrega tus propias fotos en /public/images/gallery/
+            </p>
+          </motion.div>
+
+          {/* Marco Inferior */}
+          <div className="mt-12">
+            <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
+              <path 
+                d="M10,30 Q40,50 125,30 Q210,10 240,30" 
+                fill="none" 
+                stroke="#D99999" 
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Sección de Confirmación */}
-      <section className="py-20 px-4 bg-gradient-to-b from-crema to-white">
+      <section className="py-20 px-4 bg-gradient-to-b from-crema-dark to-white">
         <motion.div
           className="max-w-md mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
