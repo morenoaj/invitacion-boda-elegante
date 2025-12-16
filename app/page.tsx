@@ -4,6 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
+  // Para configurar en Vercel:
+  // 1. Ve a tu proyecto en Vercel
+  // 2. Settings → Environment Variables
+  // 3. Agrega: NEXT_PUBLIC_WHATSAPP_NUMBER = tu_numero_aqui
+  // 4. Redeploy el proyecto
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '50767830242';
+  
   const [mounted, setMounted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showAutoplayMessage, setShowAutoplayMessage] = useState(false);
@@ -174,7 +181,7 @@ export default function Home() {
             <div className="absolute -inset-2 border-2 border-rojo-suave rounded-lg"></div>
             
             {/* Contenedor de la Foto */}
-            <div className="relative w-72 h-96 bg-gradient-to-br from-crema-dark to-white rounded-lg overflow-hidden shadow-2xl border-4 border-dorado">
+            <div className="relative w-80 h-[28rem] sm:w-96 sm:h-[32rem] md:w-[28rem] md:h-[36rem] bg-gradient-to-br from-crema-dark to-white rounded-lg overflow-hidden shadow-2xl border-4 border-dorado">
               {/* Placeholder para la foto */}
               <div className="w-full h-full flex flex-col items-center justify-center text-center p-8">
                <img 
@@ -997,7 +1004,7 @@ export default function Home() {
             </p>
 
             <motion.a
-              href="https://wa.me/50767830242"
+              href={`https://wa.me/${whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-6 px-10 py-4 bg-gradient-to-r from-rojo-suave to-rojo-suave-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
