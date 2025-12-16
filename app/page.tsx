@@ -95,18 +95,17 @@ export default function Home() {
             <div className="relative w-72 h-96 bg-gradient-to-br from-crema-dark to-white rounded-lg overflow-hidden shadow-2xl border-4 border-dorado">
               {/* Placeholder para la foto */}
               <div className="w-full h-full flex flex-col items-center justify-center text-center p-8">
-                <svg className="w-24 h-24 mb-4 text-dorado opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="text-dorado-dark font-montserrat text-sm">
-                  Coloca aquí tu foto vertical<br/>
-                  <span className="text-xs opacity-70">Tamaño recomendado: 265x457px</span>
-                </p>
+               <img 
+                    src="/images/SCAN0041.jpg" 
+                    alt="Foto de los novios"
+                    className="w-full h-full object-cover"
+                  />
+               
               </div>
               
               {/* Comentario: Para agregar tu foto, reemplaza el contenido de arriba con:
                   <img 
-                    src="/images/foto-novios.jpg" 
+                    src="/images/" 
                     alt="Foto de los novios"
                     className="w-full h-full object-cover"
                   />
@@ -155,9 +154,9 @@ export default function Home() {
               ></motion.div>
               
               <div className="flex items-center gap-3">
-                <h1 className="font-great-vibes text-6xl text-dorado">Adriana</h1>
+                <h1 className="font-great-vibes text-6xl text-dorado">Mariela</h1>
                 <span className="font-great-vibes text-3xl text-rojo-suave">&</span>
-                <h1 className="font-great-vibes text-6xl text-dorado">Saúl</h1>
+                <h1 className="font-great-vibes text-6xl text-dorado">Alex</h1>
               </div>
               
               <motion.div 
@@ -179,9 +178,9 @@ export default function Home() {
             <div className="text-center space-y-2">
               <p className="font-montserrat text-sm tracking-widest text-dorado-dark">SÁBADO</p>
               <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent"></div>
-              <p className="font-montserrat text-xl tracking-[0.3em] text-dorado font-semibold">6 ENERO</p>
+              <p className="font-montserrat text-xl tracking-[0.3em] text-dorado font-semibold">14 FEBRERO</p>
               <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent"></div>
-              <p className="font-montserrat text-sm tracking-widest text-dorado-dark">2 0 2 4</p>
+              <p className="font-montserrat text-sm tracking-widest text-dorado-dark">2 0 2 6</p>
             </div>
           </motion.div>
 
@@ -247,21 +246,21 @@ export default function Home() {
 
           <div className="space-y-4">
             <h3 className="font-montserrat text-lg tracking-wider text-dorado-dark">
-              PARROQUIA CORAZÓN DE MARÍA
+              CAPILLA SAN JUAN BOSCO
             </h3>
             
             <div className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent"></div>
             
             <p className="font-montserrat text-sm tracking-wide text-gray-700">
-              79 Av Sur # 200, San Salvador
+              Arraijan, Via Loma Coba, Sector La Paz.
             </p>
             
             <p className="font-montserrat text-xl font-bold tracking-widest text-dorado mt-6">
-              4 : 0 0  &nbsp; P . M .
+              6 : 0 0  &nbsp; P . M .
             </p>
 
             <motion.a
-              href="https://maps.app.goo.gl/TjFLAWayQ4TDF7sU7"
+              href="https://maps.app.goo.gl/wRSbX5ec3Zg6xg1r8"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-6 px-8 py-3 bg-gradient-to-r from-dorado to-dorado-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
@@ -324,21 +323,21 @@ export default function Home() {
 
           <div className="space-y-4">
             <h3 className="font-montserrat text-lg tracking-wider text-dorado-dark">
-              HACIENDA DE LOS MIRANDA
+              SALA EVA VICTORIA
             </h3>
             
             <div className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent"></div>
             
             <p className="font-montserrat text-sm tracking-wide text-gray-700">
-              Final Calle las Rosas y, C. Antigua Ferrocarril
+              Plaza Nuevo Amanecer, Segundo Piso, Nuevo Arraiján, (Frente al Super 99 de Valle Hermoso)
             </p>
             
             <p className="font-montserrat text-xl font-bold tracking-widest text-dorado mt-6">
-              6 : 0 0  &nbsp; P . M .
+              7 : 3 0  &nbsp; P . M .
             </p>
 
             <motion.a
-              href="https://maps.app.goo.gl/fZefZ9VSBrvuArdu5"
+              href="https://maps.app.goo.gl/nt93jnNLpaHeqm1b6"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-6 px-8 py-3 bg-gradient-to-r from-dorado to-dorado-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
@@ -424,10 +423,10 @@ export default function Home() {
               <div className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent mb-4"></div>
               <p className="font-montserrat text-sm tracking-wide text-gray-700 leading-relaxed">
                 Para mantener la armonía del evento,<br/>
-                te pedimos evitar vestir de:
+                le pedimos a las damas evitar vestir de:
               </p>
               <p className="font-montserrat text-base font-semibold text-dorado mt-3">
-                Blanco, Marfil, Nude y Dorado
+                Rojo y Blanco
               </p>
             </div>
           </div>
