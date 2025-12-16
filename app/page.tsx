@@ -139,7 +139,7 @@ export default function Home() {
               {/* Placeholder para la foto */}
               <div className="w-full h-full flex flex-col items-center justify-center text-center p-8">
                <img 
-                    src="/images/SCAN0041.jpg" 
+                    src="/images/foto-0.png" 
                     alt="Foto de los novios"
                     className="w-full h-full object-cover"
                   />
@@ -599,11 +599,11 @@ export default function Home() {
           {/* Timeline */}
           <div className="space-y-6 px-4">
             {[
-              { time: "5:00 PM", icon: "💒", event: "Ceremonia religiosa" },
-              { time: "6:00 PM", icon: "🥂", event: "Cóctel de bienvenida" },
-              { time: "6:30 PM", icon: "🍽️", event: "Recepción y cena" },
-              { time: "8:00 PM", icon: "💃", event: "Baile y fiesta" },
-              { time: "11:00 PM", icon: "🎆", event: "Cierre con sorpresa" }
+              { time: "6:00 PM", icon: "💒", event: "Ceremonia religiosa" },
+              { time: "7:30 PM", icon: "🥂", event: "Cóctel de bienvenida" },
+              { time: "9:30 PM", icon: "🍽️", event: "Recepción y cena" },
+              { time: "10:00 PM", icon: "💃", event: "Baile y fiesta" },
+              { time: "2:00 AM", icon: "🎆", event: "Cierre" }
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -775,7 +775,7 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
             >
               {/* Placeholder con gradiente elegante */}
-              <div className="w-full h-full bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
+              <div className="w-full h-80 bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
                 <img 
                   src="/images/gallery/foto-4.jpg"
                   alt="Foto 4"
@@ -890,7 +890,7 @@ export default function Home() {
           >
             <svg viewBox="0 0 100 100" className="fill-dorado">
               <circle cx="50" cy="50" r="35" stroke="#D99999" strokeWidth="2" fill="none"/>
-              <path d="M50,20 C33,20 19,34 19,51 C19,56 20,61 22,65 L19,81 L35,78 C39,80 44,81 50,81 C67,81 81,67 81,50 C81,33 67,20 50,20 Z M50,25 C64,25 76,37 76,51 C76,65 64,76 50,76 C45,76 41,75 37,73 L36,72 L28,74 L30,66 L29,65 C27,61 25,56 25,51 C25,37 37,25 50,25 Z M42,40 C41,40 40,40 39,41 C38,42 36,44 36,47 C36,50 38,53 39,54 C40,55 45,62 52,65 C53,66 54,66 55,67 C56,67 57,67 58,67 C59,67 61,66 62,65 C63,64 64,62 64,61 C64,60 64,59 63,59 L60,58 C59,57 57,56 56,57 C55,58 54,59 53,59 C53,59 53,59 52,59 C52,59 51,58 51,58 C48,57 45,54 43,51 C43,51 42,50 42,49 C42,48 43,47 43,46 C43,46 44,45 44,45 C44,44 44,43 43,42 C43,41 42,40 42,40 Z"/>
+              <path d="M50,20 C33,20 19,34 19,51 C19,56 20,61 22,65 L19,81 L35,78 C39,80 44,81 50,81 C67,81 81,67 81,50 C81,33 67,20 50,20 Z M50,25 C64,25 76,37 76,51 C76,65 80,76 50,76 C45,76 41,75 37,73 L36,72 L28,74 L30,66 L29,65 C27,61 25,56 25,51 C25,37 37,25 50,25 Z M42,40 C41,40 40,40 39,41 C38,42 36,44 36,47 C36,50 38,53 39,54 C40,55 45,62 52,65 C53,66 54,66 55,67 C56,67 57,67 58,67 C59,67 61,66 62,65 C63,80 80,62 80,61 C64,60 80,59 63,59 L60,58 C59,57 57,56 56,57 C55,58 54,59 53,59 C53,59 53,59 52,59 C52,59 51,58 51,58 C48,57 45,54 43,51 C43,51 42,50 42,49 C42,48 43,47 43,46 C43,46 44,45 44,45 C44,44 44,43 43,42 C43,41 42,40 42,40 Z"/>
             </svg>
           </motion.div>
 
@@ -1077,7 +1077,7 @@ export default function Home() {
         loop
         preload="auto"
       >
-        <source src="/audio/tu-amor-y-el-mio.mp3" type="audio/mpeg" />
+        <source src="/audio/AUDIO.mp3" type="audio/mpeg" />
         Tu navegador no soporta el elemento de audio.
       </audio>
 
