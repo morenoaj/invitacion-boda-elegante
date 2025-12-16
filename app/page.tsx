@@ -685,42 +685,163 @@ export default function Home() {
           </h2>
 
           {/* Grid de Galería */}
+          {/* Para agregar tus fotos: Coloca las imágenes en /public/images/gallery/ con los nombres foto-1.jpg, foto-2.jpg, etc. */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-4">
-            {[1, 2, 3, 4, 5, 6].map((item, index) => (
-              <motion.div
-                key={index}
-                className="relative aspect-square overflow-hidden rounded-lg shadow-lg border-4 border-dorado/30 group"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                {/* Placeholder con gradiente elegante */}
-                <div className="w-full h-full bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
-                                    <img 
-                      src={`/images/SCAN0042.jpg`}
-                      alt={`Foto ${item}`}
-                      className="w-full h-full object-cover"
-                    />
-                </div>
+            {/* Foto 1 */}
+            <motion.div
+              className="relative aspect-square overflow-hidden rounded-lg shadow-lg border-4 border-dorado/30 group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0 * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              {/* Placeholder con gradiente elegante */}
+              <div className="w-full h-full bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
+                <img 
+                  src="/images/gallery/foto-1.jpg"
+                  alt="Foto 1"
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-                {/* Overlay con efecto hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dorado/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                  <p className="text-white font-montserrat text-xs tracking-wider drop-shadow-lg">
-                    💕
-                  </p>
-                </div>
+              {/* Overlay con efecto hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dorado/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                <p className="text-white font-montserrat text-xs tracking-wider drop-shadow-lg">
+                  💕
+                </p>
+              </div>
+            </motion.div>
 
-                {/* Comentario: Para agregar tus fotos, reemplaza el div del placeholder con:
-                    <img 
-                      src={`/images/gallery/foto-${item}.jpg`}
-                      alt={`Foto ${item}`}
-                      className="w-full h-full object-cover"
-                    />
-                */}
-              </motion.div>
-            ))}
+            {/* Foto 2 */}
+            <motion.div
+              className="relative aspect-square overflow-hidden rounded-lg shadow-lg border-4 border-dorado/30 group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 1 * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              {/* Placeholder con gradiente elegante */}
+              <div className="w-full h-full bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
+                <img 
+                  src="/images/gallery/foto-2.jpg"
+                  alt="Foto 2"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Overlay con efecto hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dorado/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                <p className="text-white font-montserrat text-xs tracking-wider drop-shadow-lg">
+                  💕
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Foto 3 */}
+            <motion.div
+              className="relative aspect-square overflow-hidden rounded-lg shadow-lg border-4 border-dorado/30 group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 2 * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              {/* Placeholder con gradiente elegante */}
+              <div className="w-full h-full bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
+                <img 
+                  src="/images/gallery/foto-3.jpg"
+                  alt="Foto 3"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Overlay con efecto hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dorado/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                <p className="text-white font-montserrat text-xs tracking-wider drop-shadow-lg">
+                  💕
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Foto 4 */}
+            <motion.div
+              className="relative aspect-square overflow-hidden rounded-lg shadow-lg border-4 border-dorado/30 group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 3 * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              {/* Placeholder con gradiente elegante */}
+              <div className="w-full h-full bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
+                <img 
+                  src="/images/gallery/foto-4.jpg"
+                  alt="Foto 4"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Overlay con efecto hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dorado/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                <p className="text-white font-montserrat text-xs tracking-wider drop-shadow-lg">
+                  💕
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Foto 5 */}
+            <motion.div
+              className="relative aspect-square overflow-hidden rounded-lg shadow-lg border-4 border-dorado/30 group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 4 * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              {/* Placeholder con gradiente elegante */}
+              <div className="w-full h-full bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
+                <img 
+                  src="/images/gallery/foto-5.jpg"
+                  alt="Foto 5"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Overlay con efecto hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dorado/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                <p className="text-white font-montserrat text-xs tracking-wider drop-shadow-lg">
+                  💕
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Foto 6 */}
+            <motion.div
+              className="relative aspect-square overflow-hidden rounded-lg shadow-lg border-4 border-dorado/30 group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 5 * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              {/* Placeholder con gradiente elegante */}
+              <div className="w-full h-full bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
+                <img 
+                  src="/images/gallery/foto-6.jpg"
+                  alt="Foto 6"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Overlay con efecto hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dorado/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                <p className="text-white font-montserrat text-xs tracking-wider drop-shadow-lg">
+                  💕
+                </p>
+              </div>
+            </motion.div>
           </div>
 
           {/* Marco Inferior */}
