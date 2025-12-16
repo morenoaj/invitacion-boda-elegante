@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
@@ -36,6 +36,8 @@ export default function Home() {
   useEffect(() => {
     if (!mounted) return;
 
+    let cleanup: (() => void) | null = null;
+
     const attemptAutoplay = async () => {
       if (audioRef.current) {
         try {
@@ -67,6 +69,12 @@ export default function Home() {
 
           document.addEventListener('click', handleFirstInteraction);
           document.addEventListener('touchstart', handleFirstInteraction);
+          
+          // Store cleanup function to remove event listeners
+          cleanup = () => {
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('touchstart', handleFirstInteraction);
+          };
         }
       }
     };
@@ -76,6 +84,10 @@ export default function Home() {
 
     return () => {
       clearTimeout(timeoutId);
+      // Clean up event listeners if they were added
+      if (cleanup) {
+        cleanup();
+      }
     };
   }, [mounted]); // Run when component is mounted
 
@@ -1210,36 +1222,38 @@ export default function Home() {
       </motion.button>
 
       {/* Mensaje elegante cuando el autoplay está bloqueado */}
-      {showAutoplayMessage && (
-        <motion.div
-          className="fixed bottom-28 right-6 z-40 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-dorado/30 p-4 max-w-xs"
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 20, scale: 0.9 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div className="flex items-start gap-3">
-            <div className="text-2xl">🎵</div>
-            <div className="flex-1">
-              <p className="font-montserrat text-sm text-dorado-dark font-semibold mb-1">
-                Música de fondo disponible
-              </p>
-              <p className="font-montserrat text-xs text-gray-600 leading-relaxed">
-                Haz clic en el botón dorado para disfrutar de nuestra música especial
-              </p>
+      <AnimatePresence>
+        {showAutoplayMessage && (
+          <motion.div
+            className="fixed bottom-28 right-6 z-40 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-dorado/30 p-4 max-w-xs"
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="flex items-start gap-3">
+              <div className="text-2xl">🎵</div>
+              <div className="flex-1">
+                <p className="font-montserrat text-sm text-dorado-dark font-semibold mb-1">
+                  Música de fondo disponible
+                </p>
+                <p className="font-montserrat text-xs text-gray-600 leading-relaxed">
+                  Haz clic en el botón dorado para disfrutar de nuestra música especial
+                </p>
+              </div>
+              <button
+                onClick={() => setShowAutoplayMessage(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+                aria-label="Cerrar mensaje"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
             </div>
-            <button
-              onClick={() => setShowAutoplayMessage(false)}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
-              aria-label="Cerrar mensaje"
-            >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </button>
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
