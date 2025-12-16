@@ -51,7 +51,7 @@ export default function Home() {
           
           // Try to play on first user interaction
           const handleFirstInteraction = async () => {
-            if (audioRef.current && !isPlaying) {
+            if (audioRef.current) {
               try {
                 await audioRef.current.play();
                 setIsPlaying(true);
