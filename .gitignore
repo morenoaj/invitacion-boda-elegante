@@ -54,3 +54,12 @@ backend/venv/
 backend/env/
 backend/.env
 backend/firebase-credentials.json
+
+# Gallery images - users will add their own photos
+/public/images/gallery/*.jpg
+/public/images/gallery/*.jpeg
+/public/images/gallery/*.png
+/public/images/gallery/*.gif
+/public/images/gallery/*.webp
+# But keep the README
+!/public/images/gallery/README.md
