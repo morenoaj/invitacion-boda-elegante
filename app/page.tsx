@@ -1,11 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showAutoplayMessage, setShowAutoplayMessage] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -29,29 +30,67 @@ export default function Home() {
     }
   };
 
-  // Attempt autoplay on user interaction
+  // Attempt autoplay on page load
+  // Modern browsers often block autoplay without user interaction
+  // This effect tries autoplay immediately and shows a message if it fails
   useEffect(() => {
-    const handleFirstInteraction = () => {
-      if (audioRef.current && !isPlaying) {
-        audioRef.current.play().then(() => {
+    if (!mounted) return;
+
+    let cleanup: VoidFunction | null = null;
+
+    const attemptAutoplay = async () => {
+      if (audioRef.current) {
+        try {
+          // Try to autoplay the audio
+          await audioRef.current.play();
           setIsPlaying(true);
-        }).catch(() => {
-          // Autoplay failed, user will need to click the button
-        });
+          setShowAutoplayMessage(false);
+        } catch (error) {
+          // Autoplay was blocked by the browser
+          // Show a friendly message to the user
+          setShowAutoplayMessage(true);
+          setIsPlaying(false);
+          
+          // Try to play on first user interaction
+          const handleFirstInteraction = async () => {
+            if (audioRef.current) {
+              try {
+                await audioRef.current.play();
+                setIsPlaying(true);
+                setShowAutoplayMessage(false);
+              } catch (err) {
+                // Still failed, user can use the button
+              }
+            }
+            // Remove listeners after first interaction
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('touchstart', handleFirstInteraction);
+          };
+
+          document.addEventListener('click', handleFirstInteraction);
+          document.addEventListener('touchstart', handleFirstInteraction);
+          
+          // Store cleanup function to remove event listeners
+          cleanup = () => {
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('touchstart', handleFirstInteraction);
+          };
+        }
       }
-      // Remove listener after first interaction
-      document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('touchstart', handleFirstInteraction);
     };
 
-    document.addEventListener('click', handleFirstInteraction);
-    document.addEventListener('touchstart', handleFirstInteraction);
+    // Small delay to ensure page is fully loaded and audio element is ready
+    // This helps avoid race conditions with audio element initialization
+    const timeoutId = setTimeout(attemptAutoplay, 500);
 
     return () => {
-      document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('touchstart', handleFirstInteraction);
+      clearTimeout(timeoutId);
+      // Clean up event listeners if they were added
+      if (cleanup) {
+        cleanup();
+      }
     };
-  }, []); // Only run once on mount
+  }, [mounted]); // Run when component is mounted
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -296,7 +335,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.4 }}
             >
-              "El señor ha hecho esto,<br/>
+              "El Señor ha hecho esto,<br/>
               y es maravilloso a nuestros ojos."
             </motion.p>
             
@@ -376,7 +415,7 @@ export default function Home() {
             <div className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent"></div>
             
             <p className="font-montserrat text-sm tracking-wide text-gray-700">
-              Arraijan, Via Loma Coba, Sector La Paz.
+              Arraiján, Vía Loma Coba, Sector La Paz.
             </p>
             
             <p className="font-montserrat text-xl font-bold tracking-widest text-dorado mt-6">
@@ -658,6 +697,62 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Segundo Salmo Bíblico - Colosenses 3:14 */}
+      <section className="py-12 px-4 bg-gradient-to-b from-crema to-white">
+        <motion.div
+          className="max-w-xl mx-auto text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Versículo en tarjeta compacta */}
+          <div className="bg-gradient-to-br from-rojo-suave/10 to-dorado/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-dorado/30">
+            <motion.div 
+              className="w-8 h-8 mx-auto mb-3"
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+            >
+              <svg viewBox="0 0 100 100" className="fill-rojo-suave" aria-hidden="true">
+                <rect x="45" y="25" width="10" height="50" rx="2"/>
+                <rect x="35" y="45" width="30" height="10" rx="2"/>
+              </svg>
+            </motion.div>
+
+            <motion.p
+              className="font-great-vibes text-2xl md:text-3xl text-dorado-dark leading-relaxed mb-4"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              "Y sobre todo, revístanse de amor,<br/>
+              que es el vínculo perfecto."
+            </motion.p>
+            
+            <motion.div
+              className="h-px bg-gradient-to-r from-transparent via-dorado/50 to-transparent my-3"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            ></motion.div>
+            
+            <motion.p
+              className="font-montserrat text-xs tracking-widest text-rojo-suave-dark"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              COLOSENSES 3:14
+            </motion.p>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Sección de Galería de Imágenes */}
       <section className="py-20 px-4 bg-gradient-to-b from-crema to-crema-dark">
         <motion.div
@@ -896,7 +991,7 @@ export default function Home() {
 
           <div className="space-y-6">
             <p className="font-montserrat text-base tracking-wide text-gray-700 leading-relaxed px-4">
-              APRECIAREMOS NOS DEJES SABER TU ASISTENCIA<br/>
+              APRECIARÍAMOS QUE NOS DEJES SABER TU ASISTENCIA<br/>
               A MÁS TARDAR EL DÍA<br/>
               <span className="text-dorado font-semibold text-lg">31 DE DICIEMBRE</span>
             </p>
@@ -986,7 +1081,7 @@ export default function Home() {
               <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent mb-4"></div>
               
               <p className="font-montserrat text-sm text-gray-700 mb-4">
-                Transferencia digital (Codigo QR en el evento)
+                Transferencia digital (Código QR en el evento)
               </p>
 
             </motion.div>
@@ -1126,6 +1221,40 @@ export default function Home() {
           />
         )}
       </motion.button>
+
+      {/* Mensaje elegante cuando el autoplay está bloqueado */}
+      <AnimatePresence>
+        {showAutoplayMessage && (
+          <motion.div
+            className="fixed bottom-28 right-6 z-40 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-dorado/30 p-4 max-w-xs"
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="flex items-start gap-3">
+              <div className="text-2xl">🎵</div>
+              <div className="flex-1">
+                <p className="font-montserrat text-sm text-dorado-dark font-semibold mb-1">
+                  Música de fondo disponible
+                </p>
+                <p className="font-montserrat text-xs text-gray-600 leading-relaxed">
+                  Haz clic en el botón dorado para disfrutar de nuestra música especial
+                </p>
+              </div>
+              <button
+                onClick={() => setShowAutoplayMessage(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+                aria-label="Cerrar mensaje"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
