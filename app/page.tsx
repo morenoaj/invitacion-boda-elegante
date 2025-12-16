@@ -1003,16 +1003,34 @@ export default function Home() {
               <span className="text-dorado font-semibold text-lg">31 DE DICIEMBRE</span>
             </p>
 
-            <motion.a
-              href={`https://wa.me/${whatsappNumber}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-6 px-10 py-4 bg-gradient-to-r from-rojo-suave to-rojo-suave-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              CONFIRMAR POR WHATSAPP
-            </motion.a>
+            {/* Dos botones de confirmación */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 mt-8">
+              {/* Botón Confirmar Asistencia */}
+              <motion.a
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("¡Hola! Con mucha alegría confirmo que asistiré a celebrar su amor el 14 de febrero. ¡Nos vemos allá! 🎉💒")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-rojo-suave to-rojo-suave-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="text-xl">✓</span>
+                <span>SÍ, ASISTIRÉ</span>
+              </motion.a>
+
+              {/* Botón No Poder Asistir */}
+              <motion.a
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola, lamentablemente no podré asistir a su boda. Les deseo lo mejor en este día tan especial 💕")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-gray-400 to-gray-500 text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="text-xl">✗</span>
+                <span>NO PODRÉ ASISTIR</span>
+              </motion.a>
+            </div>
           </div>
 
           {/* Marco Inferior */}
