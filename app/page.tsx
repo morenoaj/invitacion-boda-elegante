@@ -1,14 +1,57 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Music player functions
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(() => {
+          // Play failed, keep isPlaying as false
+          setIsPlaying(false);
+        });
+      }
+    }
+  };
+
+  // Attempt autoplay on user interaction
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (audioRef.current && !isPlaying) {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(() => {
+          // Autoplay failed, user will need to click the button
+        });
+      }
+      // Remove listener after first interaction
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+    };
+
+    document.addEventListener('click', handleFirstInteraction);
+    document.addEventListener('touchstart', handleFirstInteraction);
+
+    return () => {
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+    };
+  }, []); // Only run once on mount
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -207,6 +250,87 @@ export default function Home() {
             </svg>
           </motion.div>
         </div>
+      </section>
+
+      {/* Sección de Salmo Bíblico */}
+      <section className="py-16 px-4 bg-gradient-to-b from-white to-crema">
+        <motion.div
+          className="max-w-2xl mx-auto text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Marco Superior */}
+          <div className="mb-8">
+            <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
+              <path 
+                d="M10,30 Q40,10 125,30 Q210,50 240,30" 
+                fill="none" 
+                stroke="#D4AF37" 
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+
+          {/* Icono Cruz */}
+          <motion.div 
+            className="w-12 h-12 mx-auto mb-6"
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <svg viewBox="0 0 100 100" className="fill-dorado">
+              <rect x="45" y="20" width="10" height="60" rx="2"/>
+              <rect x="30" y="40" width="40" height="10" rx="2"/>
+            </svg>
+          </motion.div>
+
+          {/* Versículo Bíblico */}
+          <div className="bg-gradient-to-br from-white/80 to-crema/60 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl border-2 border-dorado/20">
+            <motion.p
+              className="font-great-vibes text-3xl md:text-4xl text-dorado-dark leading-relaxed mb-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.4 }}
+            >
+              "El Señor ha hecho esto,<br/>
+              y es maravilloso a nuestros ojos."
+            </motion.p>
+            
+            <motion.div
+              className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent my-6"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            ></motion.div>
+            
+            <motion.p
+              className="font-montserrat text-sm tracking-widest text-dorado"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              SALMO 118:23
+            </motion.p>
+          </div>
+
+          {/* Marco Inferior */}
+          <div className="mt-8">
+            <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
+              <path 
+                d="M10,30 Q40,50 125,30 Q210,10 240,30" 
+                fill="none" 
+                stroke="#D99999" 
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+        </motion.div>
       </section>
 
       {/* Sección de Ceremonia */}
@@ -708,6 +832,153 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Sección de Mesa de Regalos */}
+      <section className="py-20 px-4 bg-gradient-to-b from-white to-crema">
+        <motion.div
+          className="max-w-md mx-auto text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Marco Superior */}
+          <div className="mb-8">
+            <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
+              <path 
+                d="M10,30 Q40,10 125,30 Q210,50 240,30" 
+                fill="none" 
+                stroke="#D4AF37" 
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+
+          {/* Título */}
+          <h2 className="font-great-vibes text-5xl text-dorado mb-4">Mesa de Regalos</h2>
+          <p className="font-montserrat text-sm italic text-gray-600 mb-10">
+            Tu presencia es nuestro mejor regalo, pero si deseas obsequiarnos algo
+          </p>
+
+          {/* Opciones de Regalo */}
+          <div className="space-y-6 px-4">
+            {/* Opción Yappy */}
+            <motion.div
+              className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-dorado/30"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="flex items-center justify-center gap-4 mb-4">
+                {/* Icono Yappy/Dinero Digital */}
+                <motion.div
+                  className="text-5xl"
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  💳
+                </motion.div>
+                <h3 className="font-montserrat text-xl tracking-wider text-dorado-dark font-semibold">
+                  Lluvia de Yappy
+                </h3>
+              </div>
+              
+              <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent mb-4"></div>
+              
+              <p className="font-montserrat text-sm text-gray-700 mb-4">
+                Transferencia digital
+              </p>
+
+              {/* Espacio para QR o Número */}
+              <div className="bg-gradient-to-br from-crema-dark to-white rounded-xl p-6 border-2 border-rojo-suave/20">
+                <div className="w-32 h-32 mx-auto mb-3 bg-white rounded-lg flex items-center justify-center border-2 border-dorado/30">
+                  <div className="text-center">
+                    <svg 
+                      className="w-16 h-16 mx-auto text-dorado/40 mb-2" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={1.5} 
+                        d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" 
+                      />
+                    </svg>
+                    <p className="text-xs font-montserrat text-dorado-dark">
+                      Código QR
+                    </p>
+                  </div>
+                </div>
+                <p className="font-montserrat text-xs text-gray-600 italic">
+                  💡 Aquí puedes agregar tu código QR de Yappy o número de cuenta
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Opción Sobre */}
+            <motion.div
+              className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-rojo-suave/30"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="flex items-center justify-center gap-4 mb-4">
+                {/* Icono Sobre */}
+                <motion.div
+                  className="text-5xl"
+                  whileHover={{ scale: 1.2, rotate: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  💌
+                </motion.div>
+                <h3 className="font-montserrat text-xl tracking-wider text-dorado-dark font-semibold">
+                  Sobre
+                </h3>
+              </div>
+              
+              <div className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent mb-4"></div>
+              
+              <p className="font-montserrat text-sm text-gray-700">
+                Entrega tradicional el día del evento
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Mensaje de agradecimiento */}
+          <motion.div
+            className="mt-10 bg-gradient-to-r from-rojo-suave/20 to-dorado/20 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-dorado/30"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <p className="font-great-vibes text-2xl text-dorado-dark mb-2">
+              ¡Gracias por tu cariño!
+            </p>
+            <p className="font-montserrat text-sm text-gray-700 leading-relaxed">
+              Lo que más valoramos es tu presencia en este día tan especial 💕
+            </p>
+          </motion.div>
+
+          {/* Marco Inferior */}
+          <div className="mt-12">
+            <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
+              <path 
+                d="M10,30 Q40,50 125,30 Q210,10 240,30" 
+                fill="none" 
+                stroke="#D99999" 
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Footer con mensaje final */}
       <footer className="py-12 bg-gradient-to-b from-white to-crema">
         <motion.div
@@ -725,6 +996,63 @@ export default function Home() {
           </p>
         </motion.div>
       </footer>
+
+      {/* Reproductor de Audio de Fondo */}
+      {/* IMPORTANTE: Coloca el archivo de audio en /public/audio/tu-amor-y-el-mio.mp3 */}
+      <audio
+        ref={audioRef}
+        loop
+        preload="auto"
+      >
+        <source src="/audio/tu-amor-y-el-mio.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+
+      {/* Botón Flotante de Música */}
+      <motion.button
+        onClick={toggleMusic}
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-br from-dorado to-dorado-light rounded-full shadow-2xl flex items-center justify-center border-4 border-white hover:scale-110 transition-transform duration-300"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1 }}
+        whileHover={{ scale: 1.15 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label={isPlaying ? "Pausar música" : "Reproducir música"}
+      >
+        {isPlaying ? (
+          // Icono de Pausa
+          <svg 
+            className="w-8 h-8 text-white" 
+            fill="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+          </svg>
+        ) : (
+          // Icono de Play/Música
+          <svg 
+            className="w-8 h-8 text-white" 
+            fill="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        )}
+        
+        {/* Animación de ondas cuando está reproduciendo */}
+        {isPlaying && (
+          <motion.div
+            className="absolute inset-0 rounded-full border-4 border-rojo-suave"
+            initial={{ scale: 1, opacity: 0.8 }}
+            animate={{ scale: 1.5, opacity: 0 }}
+            transition={{ 
+              duration: 1.5, 
+              repeat: Infinity, 
+              ease: "easeOut" 
+            }}
+          />
+        )}
+      </motion.button>
     </main>
   );
 }
