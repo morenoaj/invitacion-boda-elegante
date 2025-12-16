@@ -61,3 +61,5 @@ backend/firebase-credentials.json
 /public/images/gallery/*.png
 /public/images/gallery/*.gif
 /public/images/gallery/*.webp
+# But keep the README
+!/public/images/gallery/README.md
