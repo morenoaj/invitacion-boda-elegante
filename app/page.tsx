@@ -296,7 +296,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.4 }}
             >
-              "El Señor ha hecho esto,<br/>
+              "El señor ha hecho esto,<br/>
               y es maravilloso a nuestros ojos."
             </motion.p>
             
@@ -698,24 +698,11 @@ export default function Home() {
               >
                 {/* Placeholder con gradiente elegante */}
                 <div className="w-full h-full bg-gradient-to-br from-crema-dark via-white to-rojo-suave/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <svg 
-                      className="w-16 h-16 mx-auto text-dorado/40 mb-2" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth={1.5} 
-                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" 
-                      />
-                    </svg>
-                    <p className="text-xs font-montserrat text-dorado-dark opacity-60">
-                      Foto {item}
-                    </p>
-                  </div>
+                                    <img 
+                      src={`/images/SCAN0042.jpg`}
+                      alt={`Foto ${item}`}
+                      className="w-full h-full object-cover"
+                    />
                 </div>
 
                 {/* Overlay con efecto hover */}
@@ -735,19 +722,6 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-
-          {/* Nota sobre cómo agregar fotos */}
-          <motion.div
-            className="mt-10 bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-rojo-suave/30 text-center max-w-md mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <p className="font-montserrat text-xs text-gray-600 italic">
-              💡 Tip: Agrega tus propias fotos en /public/images/gallery/
-            </p>
-          </motion.div>
 
           {/* Marco Inferior */}
           <div className="mt-12">
@@ -870,52 +844,30 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               whileHover={{ scale: 1.02 }}
             >
-              <div className="flex items-center justify-center gap-4 mb-4">
-                {/* Icono Yappy/Dinero Digital */}
-                <motion.div
-                  className="text-5xl"
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  💳
-                </motion.div>
-                <h3 className="font-montserrat text-xl tracking-wider text-dorado-dark font-semibold">
-                  Lluvia de Yappy
-                </h3>
-              </div>
+<div className="flex items-center justify-center gap-4 mb-4">
+  {/* Icono Yappy/Dinero Digital */}
+  <motion.div
+    className="text-5xl"
+    whileHover={{ scale: 1.2, rotate: 5 }}
+    transition={{ type: "spring", stiffness: 300 }}
+  >
+    <img 
+      src="/images/yappy-logo.png" 
+      alt="Yappy" 
+      className="w-16 h-16 object-contain"
+    />
+  </motion.div>
+  <h3 className="font-montserrat text-xl tracking-wider text-dorado-dark font-semibold">
+    Lluvia de Yappy
+  </h3>
+</div>
               
               <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent mb-4"></div>
               
               <p className="font-montserrat text-sm text-gray-700 mb-4">
-                Transferencia digital
+                Transferencia digital (Codigo QR en el evento)
               </p>
 
-              {/* Espacio para QR o Número */}
-              <div className="bg-gradient-to-br from-crema-dark to-white rounded-xl p-6 border-2 border-rojo-suave/20">
-                <div className="w-32 h-32 mx-auto mb-3 bg-white rounded-lg flex items-center justify-center border-2 border-dorado/30">
-                  <div className="text-center">
-                    <svg 
-                      className="w-16 h-16 mx-auto text-dorado/40 mb-2" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth={1.5} 
-                        d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" 
-                      />
-                    </svg>
-                    <p className="text-xs font-montserrat text-dorado-dark">
-                      Código QR
-                    </p>
-                  </div>
-                </div>
-                <p className="font-montserrat text-xs text-gray-600 italic">
-                  💡 Aquí puedes agregar tu código QR de Yappy o número de cuenta
-                </p>
-              </div>
             </motion.div>
 
             {/* Opción Sobre */}

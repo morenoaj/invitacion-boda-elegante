@@ -15,8 +15,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Adriana & Saúl - Invitación de Boda",
-  description: "Te invitamos a celebrar nuestra boda el 6 de Enero de 2024",
+  title: "Boda de Mariela & Alex",
+  description: "Te invitamos a celebrar nuestra boda el 14 de Febrero de 2026",
 };
 
 export default function RootLayout({
@@ -26,6 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💒</text></svg>" />
+      </head>
       <body className={`${greatVibes.variable} ${montserrat.variable} antialiased`}>
         {children}
       </body>
