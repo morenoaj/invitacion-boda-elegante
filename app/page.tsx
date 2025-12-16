@@ -36,7 +36,7 @@ export default function Home() {
   useEffect(() => {
     if (!mounted) return;
 
-    let cleanup: (() => void) | null = null;
+    let cleanup: VoidFunction | null = null;
 
     const attemptAutoplay = async () => {
       if (audioRef.current) {
@@ -79,7 +79,8 @@ export default function Home() {
       }
     };
 
-    // Small delay to ensure page is ready
+    // Small delay to ensure page is fully loaded and audio element is ready
+    // This helps avoid race conditions with audio element initialization
     const timeoutId = setTimeout(attemptAutoplay, 500);
 
     return () => {
@@ -714,7 +715,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
             >
-              <svg viewBox="0 0 100 100" className="fill-rojo-suave">
+              <svg viewBox="0 0 100 100" className="fill-rojo-suave" aria-hidden="true">
                 <rect x="45" y="25" width="10" height="50" rx="2"/>
                 <rect x="35" y="45" width="30" height="10" rx="2"/>
               </svg>
