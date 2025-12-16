@@ -997,7 +997,7 @@ export default function Home() {
             </p>
 
             <motion.a
-              href="https://wa.me/50312345678"
+              href="https://wa.me/50767830242"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-6 px-10 py-4 bg-gradient-to-r from-rojo-suave to-rojo-suave-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
