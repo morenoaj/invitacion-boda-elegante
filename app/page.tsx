@@ -181,7 +181,7 @@ export default function Home() {
             <div className="absolute -inset-2 border-2 border-rojo-suave rounded-lg"></div>
             
             {/* Contenedor de la Foto */}
-            <div className="relative w-80 h-[28rem] sm:w-96 sm:h-[32rem] md:w-[26rem] md:h-[34rem] bg-gradient-to-br from-crema-dark to-white rounded-lg overflow-hidden shadow-2xl border-4 border-dorado">
+            <div className="relative w-80 h-[28rem] sm:w-96 sm:h-[32rem] md:w-[28rem] md:h-[36rem] bg-gradient-to-br from-crema-dark to-white rounded-lg overflow-hidden shadow-2xl border-4 border-dorado">
               {/* Placeholder para la foto */}
               <div className="w-full h-full flex flex-col items-center justify-center text-center p-8">
                <img 
