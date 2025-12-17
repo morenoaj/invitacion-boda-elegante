@@ -596,7 +596,7 @@ export default function Home() {
                 le pedimos a las damas evitar vestir de:
               </p>
               <p className="font-montserrat text-base font-semibold text-dorado mt-3">
-                Rojo y Blanco
+              Ni rojo ni blanco              
               </p>
             </div>
           </div>
