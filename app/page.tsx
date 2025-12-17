@@ -1,22 +1,22 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import EnvelopeAnimation from '../components/EnvelopeAnimation';
 
 /**
  * INVITACIONES PERSONALIZADAS
- * 
+ *
  * Cómo generar links personalizados:
- * 
+ *
  * Formato: https://tu-sitio.vercel.app?nombres=Nombre+del+Invitado
- * 
+ *
  * Ejemplos:
  * - https://tu-sitio.vercel.app?nombres=Juan+Pérez
  * - https://tu-sitio.vercel.app?nombres=María+y+Carlos+Rodríguez
  * - https://tu-sitio.vercel.app?nombres=Familia+González
- * 
+ *
  * Para generar múltiples links:
  * 1. Crea un Excel/Google Sheets con tu lista de invitados
  * 2. En una columna pon: =CONCATENAR("https://tu-sitio.vercel.app?nombres=", SUSTITUIR(A2, " ", "+"))
@@ -24,22 +24,27 @@ import EnvelopeAnimation from '../components/EnvelopeAnimation';
  * 4. Envía cada link personalizado por WhatsApp/Email
  */
 
-export default function Home() {
+// Component that uses useSearchParams - must be wrapped in Suspense
+function GuestNameProvider() {
+  const searchParams = useSearchParams();
+  const nombresParam = searchParams.get('nombres');
+
+  // Decode guest name, replacing + with spaces and decoding URI components
+  const guestName = nombresParam
+    ? decodeURIComponent(nombresParam.replace(/\+/g, ' '))
+    : 'Estimado Invitado';
+
+  return <InvitationContent guestName={guestName} />;
+}
+
+// Main invitation content component
+function InvitationContent({ guestName }: { guestName: string }) {
   // Para configurar en Vercel:
   // 1. Ve a tu proyecto en Vercel
   // 2. Settings → Environment Variables
   // 3. Agrega: NEXT_PUBLIC_WHATSAPP_NUMBER = tu_numero_aqui
   // 4. Redeploy el proyecto
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '50767830242';
-  
-  // Read guest name from URL parameters
-  const searchParams = useSearchParams();
-  const nombresParam = searchParams.get('nombres');
-  
-  // Decode guest name, replacing + with spaces and decoding URI components
-  const guestName = nombresParam 
-    ? decodeURIComponent(nombresParam.replace(/\+/g, ' '))
-    : 'Estimado Invitado';
   
   const [mounted, setMounted] = useState(false);
   const [showEnvelope, setShowEnvelope] = useState(true);
@@ -1362,5 +1367,22 @@ export default function Home() {
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+// Main component with Suspense boundary
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-crema flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-pulse">
+            <p className="font-great-vibes text-4xl text-dorado mb-4">Cargando invitación...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <GuestNameProvider />
+    </Suspense>
   );
 }
