@@ -2,6 +2,27 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
+import EnvelopeAnimation from '../components/EnvelopeAnimation';
+
+/**
+ * INVITACIONES PERSONALIZADAS
+ * 
+ * Cómo generar links personalizados:
+ * 
+ * Formato: https://tu-sitio.vercel.app?nombres=Nombre+del+Invitado
+ * 
+ * Ejemplos:
+ * - https://tu-sitio.vercel.app?nombres=Juan+Pérez
+ * - https://tu-sitio.vercel.app?nombres=María+y+Carlos+Rodríguez
+ * - https://tu-sitio.vercel.app?nombres=Familia+González
+ * 
+ * Para generar múltiples links:
+ * 1. Crea un Excel/Google Sheets con tu lista de invitados
+ * 2. En una columna pon: =CONCATENAR("https://tu-sitio.vercel.app?nombres=", SUSTITUIR(A2, " ", "+"))
+ * 3. Copia la fórmula para todos tus invitados
+ * 4. Envía cada link personalizado por WhatsApp/Email
+ */
 
 export default function Home() {
   // Para configurar en Vercel:
@@ -11,7 +32,18 @@ export default function Home() {
   // 4. Redeploy el proyecto
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '50767830242';
   
+  // Read guest name from URL parameters
+  const searchParams = useSearchParams();
+  const nombresParam = searchParams.get('nombres');
+  
+  // Decode guest name, replacing + with spaces and decoding URI components
+  const guestName = nombresParam 
+    ? decodeURIComponent(nombresParam.replace(/\+/g, ' '))
+    : 'Estimado Invitado';
+  
   const [mounted, setMounted] = useState(false);
+  const [showEnvelope, setShowEnvelope] = useState(true);
+  const [showInvitation, setShowInvitation] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showAutoplayMessage, setShowAutoplayMessage] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -19,6 +51,26 @@ export default function Home() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Handle envelope animation completion
+  const handleEnvelopeComplete = () => {
+    setShowEnvelope(false);
+    setShowInvitation(true);
+    
+    // Start music when envelope opens
+    if (audioRef.current) {
+      audioRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+          setShowAutoplayMessage(false);
+        })
+        .catch(() => {
+          // Autoplay failed, show message
+          setShowAutoplayMessage(true);
+          setIsPlaying(false);
+        });
+    }
+  };
 
   // Music player functions
   const toggleMusic = () => {
@@ -36,68 +88,6 @@ export default function Home() {
       }
     }
   };
-
-  // Attempt autoplay on page load
-  // Modern browsers often block autoplay without user interaction
-  // This effect tries autoplay immediately and shows a message if it fails
-  useEffect(() => {
-    if (!mounted) return;
-
-    let cleanup: VoidFunction | null = null;
-
-    const attemptAutoplay = async () => {
-      if (audioRef.current) {
-        try {
-          // Try to autoplay the audio
-          await audioRef.current.play();
-          setIsPlaying(true);
-          setShowAutoplayMessage(false);
-        } catch (error) {
-          // Autoplay was blocked by the browser
-          // Show a friendly message to the user
-          setShowAutoplayMessage(true);
-          setIsPlaying(false);
-          
-          // Try to play on first user interaction
-          const handleFirstInteraction = async () => {
-            if (audioRef.current) {
-              try {
-                await audioRef.current.play();
-                setIsPlaying(true);
-                setShowAutoplayMessage(false);
-              } catch (err) {
-                // Still failed, user can use the button
-              }
-            }
-            // Remove listeners after first interaction
-            document.removeEventListener('click', handleFirstInteraction);
-            document.removeEventListener('touchstart', handleFirstInteraction);
-          };
-
-          document.addEventListener('click', handleFirstInteraction);
-          document.addEventListener('touchstart', handleFirstInteraction);
-          
-          // Store cleanup function to remove event listeners
-          cleanup = () => {
-            document.removeEventListener('click', handleFirstInteraction);
-            document.removeEventListener('touchstart', handleFirstInteraction);
-          };
-        }
-      }
-    };
-
-    // Small delay to ensure page is fully loaded and audio element is ready
-    // This helps avoid race conditions with audio element initialization
-    const timeoutId = setTimeout(attemptAutoplay, 500);
-
-    return () => {
-      clearTimeout(timeoutId);
-      // Clean up event listeners if they were added
-      if (cleanup) {
-        cleanup();
-      }
-    };
-  }, [mounted]); // Run when component is mounted
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -120,9 +110,44 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <main className="min-h-screen bg-crema overflow-x-hidden">
+    <>
+      {/* Envelope Animation - Shows first */}
+      {showEnvelope && (
+        <EnvelopeAnimation 
+          guestName={guestName}
+          onAnimationComplete={handleEnvelopeComplete}
+        />
+      )}
+
+      {/* Main Invitation - Shows after envelope opens */}
+      <AnimatePresence>
+        {showInvitation && (
+          <motion.main 
+            className="min-h-screen bg-crema overflow-x-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+          >
+            {/* Sticky Header with Guest Name */}
+            <motion.div
+              className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-dorado/90 via-dorado-light/90 to-dorado/90 backdrop-blur-sm shadow-lg"
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <div className="max-w-4xl mx-auto px-4 py-3 text-center">
+                <p className="font-montserrat text-xs tracking-wider text-white/80 mb-1">
+                  INVITACIÓN PERSONAL PARA
+                </p>
+                <div className="h-px bg-gradient-to-r from-transparent via-white/50 to-transparent mb-1"></div>
+                <p className="font-great-vibes text-2xl md:text-3xl text-white">
+                  {guestName}
+                </p>
+              </div>
+            </motion.div>
+
       {/* Hero Section - Foto Principal */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-10">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-10 pt-32">
         {/* Decoraciones de fondo */}
         <motion.div
           className="absolute top-20 right-8 w-16 h-16 opacity-30"
@@ -169,6 +194,25 @@ export default function Home() {
                 strokeWidth="1.5"
               />
             </svg>
+          </motion.div>
+
+          {/* Personalized Greeting */}
+          <motion.div
+            className="mb-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <p className="font-great-vibes text-4xl md:text-5xl text-dorado mb-2">
+              Queridos
+            </p>
+            <p className="font-great-vibes text-3xl md:text-4xl text-rojo-suave">
+              {guestName}
+            </p>
+            <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4 mx-auto max-w-xs"></div>
+            <p className="font-montserrat text-sm text-gray-700 tracking-wide">
+              Los invitamos a ser parte de nuestro día especial
+            </p>
           </motion.div>
 
           {/* ESPACIO PARA FOTO - BIEN VISIBLE */}
@@ -1190,6 +1234,40 @@ export default function Home() {
         </motion.div>
       </footer>
 
+      {/* Mensaje elegante cuando el autoplay está bloqueado */}
+      <AnimatePresence>
+        {showAutoplayMessage && (
+          <motion.div
+            className="fixed bottom-28 right-6 z-40 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-dorado/30 p-4 max-w-xs"
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="flex items-start gap-3">
+              <div className="text-2xl">🎵</div>
+              <div className="flex-1">
+                <p className="font-montserrat text-sm text-dorado-dark font-semibold mb-1">
+                  Música de fondo disponible
+                </p>
+                <p className="font-montserrat text-xs text-gray-600 leading-relaxed">
+                  Haz clic en el botón dorado para disfrutar de nuestra música especial
+                </p>
+              </div>
+              <button
+                onClick={() => setShowAutoplayMessage(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+                aria-label="Cerrar mensaje"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Reproductor de Audio de Fondo */}
       {/* IMPORTANTE: Coloca el archivo de audio en /public/audio/tu-amor-y-el-mio.mp3 */}
       <audio
@@ -1280,6 +1358,9 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-    </main>
+          </motion.main>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
