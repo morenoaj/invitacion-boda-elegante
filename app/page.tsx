@@ -401,7 +401,7 @@ export default function Home() {
           </div>
 
           {/* Título */}
-          <h2 className="font-great-vibes text-5xl text-dorado mb-6">Ceremonia</h2>
+          <h2 className="font-great-vibes text-5xl text-dorado mb-6">Ceremonia Religiosa</h2>
 
           {/* Icono Iglesia */}
           <motion.div 
