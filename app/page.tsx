@@ -122,7 +122,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-crema overflow-x-hidden">
       {/* Hero Section - Foto Principal */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-16">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-10">
         {/* Decoraciones de fondo */}
         <motion.div
           className="absolute top-20 right-8 w-16 h-16 opacity-30"
@@ -152,7 +152,7 @@ export default function Home() {
           
           {/* Marco Decorativo Superior */}
           <motion.div 
-            className="mb-8"
+            className="mb-6"
             {...scaleIn}
           >
             <svg width="250" height="60" viewBox="0 0 250 60" className="mb-4">
@@ -173,7 +173,7 @@ export default function Home() {
 
           {/* ESPACIO PARA FOTO - BIEN VISIBLE */}
           <motion.div 
-            className="relative mb-8"
+            className="relative mb-6"
             {...fadeIn}
           >
             {/* Marco Decorativo para la Foto */}
@@ -229,7 +229,7 @@ export default function Home() {
 
           {/* Nombres de los Novios */}
           <motion.div
-            className="text-center mb-8"
+            className="text-center mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -275,7 +275,7 @@ export default function Home() {
 
           {/* Marco Decorativo Inferior */}
           <motion.div 
-            className="mt-8"
+            className="mt-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
@@ -299,7 +299,7 @@ export default function Home() {
       </section>
 
       {/* Sección de Salmo Bíblico */}
-      <section className="py-16 px-4 bg-gradient-to-b from-white to-crema">
+      <section className="py-10 md:py-12 px-4 bg-gradient-to-b from-white to-crema">
         <motion.div
           className="max-w-2xl mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -308,7 +308,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           {/* Marco Superior */}
-          <div className="mb-8">
+          <div className="mb-6">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,10 125,30 Q210,50 240,30" 
@@ -321,7 +321,7 @@ export default function Home() {
 
           {/* Icono Cruz */}
           <motion.div 
-            className="w-12 h-12 mx-auto mb-6"
+            className="w-12 h-12 mx-auto mb-4"
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -334,9 +334,9 @@ export default function Home() {
           </motion.div>
 
           {/* Versículo Bíblico */}
-          <div className="bg-gradient-to-br from-white/80 to-crema/60 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl border-2 border-dorado/20">
+          <div className="bg-gradient-to-br from-white/80 to-crema/60 backdrop-blur-sm rounded-3xl p-6 md:p-10 shadow-xl border-2 border-dorado/20">
             <motion.p
-              className="font-great-vibes text-3xl md:text-4xl text-dorado-dark leading-relaxed mb-6"
+              className="font-great-vibes text-3xl md:text-4xl text-dorado-dark leading-relaxed mb-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -347,7 +347,7 @@ export default function Home() {
             </motion.p>
             
             <motion.div
-              className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent my-6"
+              className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent my-4"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -366,7 +366,7 @@ export default function Home() {
           </div>
 
           {/* Marco Inferior */}
-          <div className="mt-8">
+          <div className="mt-6">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,50 125,30 Q210,10 240,30" 
@@ -380,7 +380,7 @@ export default function Home() {
       </section>
 
       {/* Sección de Ceremonia */}
-      <section className="py-20 px-4 bg-gradient-to-b from-crema to-crema-dark">
+      <section className="py-12 md:py-14 px-4 bg-gradient-to-b from-crema to-crema-dark">
         <motion.div
           className="max-w-md mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -389,7 +389,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           {/* Marco Superior */}
-          <div className="mb-8">
+          <div className="mb-6">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,10 125,30 Q210,50 240,30" 
@@ -401,11 +401,11 @@ export default function Home() {
           </div>
 
           {/* Título */}
-          <h2 className="font-great-vibes text-5xl text-dorado mb-8">Ceremonia</h2>
+          <h2 className="font-great-vibes text-5xl text-dorado mb-6">Ceremonia</h2>
 
           {/* Icono Iglesia */}
           <motion.div 
-            className="w-16 h-16 mx-auto mb-6"
+            className="w-16 h-16 mx-auto mb-4"
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -425,7 +425,7 @@ export default function Home() {
               Arraiján, Vía Loma Coba, Sector La Paz.
             </p>
             
-            <p className="font-montserrat text-xl font-bold tracking-widest text-dorado mt-6">
+            <p className="font-montserrat text-xl font-bold tracking-widest text-dorado mt-4">
               6 : 0 0  &nbsp; P . M .
             </p>
 
@@ -433,7 +433,7 @@ export default function Home() {
               href="https://maps.app.goo.gl/wRSbX5ec3Zg6xg1r8"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-6 px-8 py-3 bg-gradient-to-r from-dorado to-dorado-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-block mt-4 px-8 py-3 bg-gradient-to-r from-dorado to-dorado-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -442,7 +442,7 @@ export default function Home() {
           </div>
 
           {/* Marco Inferior */}
-          <div className="mt-12">
+          <div className="mt-8">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,50 125,30 Q210,10 240,30" 
@@ -456,7 +456,7 @@ export default function Home() {
       </section>
 
       {/* Sección de Recepción */}
-      <section className="py-20 px-4 bg-gradient-to-b from-crema-dark to-crema">
+      <section className="py-12 md:py-14 px-4 bg-gradient-to-b from-crema-dark to-crema">
         <motion.div
           className="max-w-md mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -465,7 +465,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           {/* Marco Superior */}
-          <div className="mb-8">
+          <div className="mb-6">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,10 125,30 Q210,50 240,30" 
@@ -477,11 +477,11 @@ export default function Home() {
           </div>
 
           {/* Título */}
-          <h2 className="font-great-vibes text-5xl text-dorado mb-8">Recepción</h2>
+          <h2 className="font-great-vibes text-5xl text-dorado mb-6">Recepción</h2>
 
           {/* Icono Recepción */}
           <motion.div 
-            className="w-16 h-16 mx-auto mb-6"
+            className="w-16 h-16 mx-auto mb-4"
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -502,7 +502,7 @@ export default function Home() {
               Plaza Nuevo Amanecer, Segundo Piso, Nuevo Arraiján, (Frente al Super 99 de Valle Hermoso)
             </p>
             
-            <p className="font-montserrat text-xl font-bold tracking-widest text-dorado mt-6">
+            <p className="font-montserrat text-xl font-bold tracking-widest text-dorado mt-4">
               7 : 3 0  &nbsp; P . M .
             </p>
 
@@ -510,7 +510,7 @@ export default function Home() {
               href="https://maps.app.goo.gl/nt93jnNLpaHeqm1b6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-6 px-8 py-3 bg-gradient-to-r from-dorado to-dorado-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-block mt-4 px-8 py-3 bg-gradient-to-r from-dorado to-dorado-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -519,7 +519,7 @@ export default function Home() {
           </div>
 
           {/* Marco Inferior */}
-          <div className="mt-12">
+          <div className="mt-8">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,50 125,30 Q210,10 240,30" 
@@ -533,7 +533,7 @@ export default function Home() {
       </section>
 
       {/* Sección de Código de Vestimenta */}
-      <section className="py-20 px-4 bg-gradient-to-b from-crema to-crema-dark">
+      <section className="py-12 md:py-14 px-4 bg-gradient-to-b from-crema to-crema-dark">
         <motion.div
           className="max-w-md mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -542,7 +542,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           {/* Marco Superior */}
-          <div className="mb-8">
+          <div className="mb-6">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,10 125,30 Q210,50 240,30" 
@@ -554,10 +554,10 @@ export default function Home() {
           </div>
 
           {/* Título */}
-          <h2 className="font-great-vibes text-5xl text-dorado mb-8">Código de Vestimenta</h2>
+          <h2 className="font-great-vibes text-5xl text-dorado mb-6">Código de Vestimenta</h2>
 
           {/* Iconos de Vestimenta */}
-          <div className="flex justify-center gap-6 mb-8">
+          <div className="flex justify-center gap-6 mb-6">
             <motion.div
               className="text-6xl"
               whileHover={{ scale: 1.2, rotate: 5 }}
@@ -602,7 +602,7 @@ export default function Home() {
           </div>
 
           {/* Marco Inferior */}
-          <div className="mt-12">
+          <div className="mt-8">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,50 125,30 Q210,10 240,30" 
@@ -616,7 +616,7 @@ export default function Home() {
       </section>
 
       {/* Sección de Itinerario del Día */}
-      <section className="py-20 px-4 bg-gradient-to-b from-crema-dark to-crema">
+      <section className="py-12 md:py-14 px-4 bg-gradient-to-b from-crema-dark to-crema">
         <motion.div
           className="max-w-md mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -625,7 +625,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           {/* Marco Superior */}
-          <div className="mb-8">
+          <div className="mb-6">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,10 125,30 Q210,50 240,30" 
@@ -637,8 +637,8 @@ export default function Home() {
           </div>
 
           {/* Título */}
-          <h2 className="font-great-vibes text-5xl text-dorado mb-4">Itinerario del Día</h2>
-          <p className="font-montserrat text-sm italic text-gray-600 mb-10">
+          <h2 className="font-great-vibes text-5xl text-dorado mb-3">Itinerario del Día</h2>
+          <p className="font-montserrat text-sm italic text-gray-600 mb-8">
             Así será nuestro día especial
           </p>
 
@@ -675,7 +675,7 @@ export default function Home() {
 
           {/* Nota Importante */}
           <motion.div
-            className="mt-10 bg-gradient-to-r from-rojo-suave/20 to-dorado/20 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-rojo-suave/30"
+            className="mt-8 bg-gradient-to-r from-rojo-suave/20 to-dorado/20 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-rojo-suave/30"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -691,7 +691,7 @@ export default function Home() {
           </motion.div>
 
           {/* Marco Inferior */}
-          <div className="mt-12">
+          <div className="mt-8">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,50 125,30 Q210,10 240,30" 
@@ -705,7 +705,7 @@ export default function Home() {
       </section>
 
       {/* Segundo Salmo Bíblico - Colosenses 3:14 */}
-      <section className="py-12 px-4 bg-gradient-to-b from-crema to-white">
+      <section className="py-8 md:py-10 px-4 bg-gradient-to-b from-crema to-white">
         <motion.div
           className="max-w-xl mx-auto text-center"
           initial={{ opacity: 0, y: 30 }}
@@ -714,9 +714,9 @@ export default function Home() {
           transition={{ duration: 0.6 }}
         >
           {/* Versículo en tarjeta compacta */}
-          <div className="bg-gradient-to-br from-rojo-suave/10 to-dorado/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-dorado/30">
+          <div className="bg-gradient-to-br from-rojo-suave/10 to-dorado/10 backdrop-blur-sm rounded-2xl p-5 md:p-6 shadow-lg border border-dorado/30">
             <motion.div 
-              className="w-8 h-8 mx-auto mb-3"
+              className="w-8 h-8 mx-auto mb-2"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
@@ -729,7 +729,7 @@ export default function Home() {
             </motion.div>
 
             <motion.p
-              className="font-great-vibes text-2xl md:text-3xl text-dorado-dark leading-relaxed mb-4"
+              className="font-great-vibes text-2xl md:text-3xl text-dorado-dark leading-relaxed mb-3"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -740,7 +740,7 @@ export default function Home() {
             </motion.p>
             
             <motion.div
-              className="h-px bg-gradient-to-r from-transparent via-dorado/50 to-transparent my-3"
+              className="h-px bg-gradient-to-r from-transparent via-dorado/50 to-transparent my-2"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -761,7 +761,7 @@ export default function Home() {
       </section>
 
       {/* Sección de Galería de Imágenes */}
-      <section className="py-20 px-4 bg-gradient-to-b from-crema to-crema-dark">
+      <section className="py-12 md:py-14 px-4 bg-gradient-to-b from-crema to-crema-dark">
         <motion.div
           className="max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 50 }}
@@ -770,7 +770,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           {/* Marco Superior */}
-          <div className="mb-8">
+          <div className="mb-6">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,10 125,30 Q210,50 240,30" 
@@ -782,7 +782,7 @@ export default function Home() {
           </div>
 
           {/* Título */}
-          <h2 className="font-great-vibes text-5xl text-dorado mb-12 text-center">
+          <h2 className="font-great-vibes text-5xl text-dorado mb-8 text-center">
             Nuestros Momentos
           </h2>
 
@@ -947,7 +947,7 @@ export default function Home() {
           </div>
 
           {/* Marco Inferior */}
-          <div className="mt-12">
+          <div className="mt-8">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,50 125,30 Q210,10 240,30" 
@@ -961,7 +961,7 @@ export default function Home() {
       </section>
 
       {/* Sección de Confirmación */}
-      <section className="py-20 px-4 bg-gradient-to-b from-crema-dark to-white">
+      <section className="py-12 md:py-14 px-4 bg-gradient-to-b from-crema-dark to-white">
         <motion.div
           className="max-w-md mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -970,7 +970,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           {/* Marco Superior */}
-          <div className="mb-8">
+          <div className="mb-6">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,10 125,30 Q210,50 240,30" 
@@ -982,11 +982,11 @@ export default function Home() {
           </div>
 
           {/* Título */}
-          <h2 className="font-great-vibes text-5xl text-dorado mb-8">Confirmación</h2>
+          <h2 className="font-great-vibes text-5xl text-dorado mb-6">Confirmación</h2>
 
           {/* Icono WhatsApp */}
           <motion.div 
-            className="w-16 h-16 mx-auto mb-6"
+            className="w-16 h-16 mx-auto mb-4"
             whileHover={{ scale: 1.2, rotate: 10 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -1004,7 +1004,7 @@ export default function Home() {
             </p>
 
             {/* Dos botones de confirmación */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 mt-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 mt-6">
               {/* Botón Confirmar Asistencia */}
               <motion.a
                 href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("¡Hola! Con mucha alegría confirmo que asistiré a celebrar su amor el 14 de febrero. ¡Nos vemos allá! 🎉💒")}`}
@@ -1034,7 +1034,7 @@ export default function Home() {
           </div>
 
           {/* Marco Inferior */}
-          <div className="mt-12">
+          <div className="mt-8">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,50 125,30 Q210,10 240,30" 
@@ -1048,7 +1048,7 @@ export default function Home() {
       </section>
 
       {/* Sección de Mesa de Regalos */}
-      <section className="py-20 px-4 bg-gradient-to-b from-white to-crema">
+      <section className="py-12 md:py-14 px-4 bg-gradient-to-b from-white to-crema">
         <motion.div
           className="max-w-md mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -1057,7 +1057,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           {/* Marco Superior */}
-          <div className="mb-8">
+          <div className="mb-6">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,10 125,30 Q210,50 240,30" 
@@ -1069,8 +1069,8 @@ export default function Home() {
           </div>
 
           {/* Título */}
-          <h2 className="font-great-vibes text-5xl text-dorado mb-4">Mesa de Regalos</h2>
-          <p className="font-montserrat text-sm italic text-gray-600 mb-10">
+          <h2 className="font-great-vibes text-5xl text-dorado mb-3">Mesa de Regalos</h2>
+          <p className="font-montserrat text-sm italic text-gray-600 mb-8">
             Tu presencia es nuestro mejor regalo, pero si deseas obsequiarnos algo
           </p>
 
@@ -1144,7 +1144,7 @@ export default function Home() {
 
           {/* Mensaje de agradecimiento */}
           <motion.div
-            className="mt-10 bg-gradient-to-r from-rojo-suave/20 to-dorado/20 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-dorado/30"
+            className="mt-8 bg-gradient-to-r from-rojo-suave/20 to-dorado/20 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-dorado/30"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -1159,7 +1159,7 @@ export default function Home() {
           </motion.div>
 
           {/* Marco Inferior */}
-          <div className="mt-12">
+          <div className="mt-8">
             <svg width="250" height="60" viewBox="0 0 250 60" className="mx-auto">
               <path 
                 d="M10,30 Q40,50 125,30 Q210,10 240,30" 
@@ -1173,7 +1173,7 @@ export default function Home() {
       </section>
 
       {/* Footer con mensaje final */}
-      <footer className="py-12 bg-gradient-to-b from-white to-crema">
+      <footer className="py-8 bg-gradient-to-b from-white to-crema">
         <motion.div
           className="text-center"
           initial={{ opacity: 0 }}
