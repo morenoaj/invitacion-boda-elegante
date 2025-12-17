@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 interface EnvelopeAnimationProps {
@@ -11,8 +11,16 @@ interface EnvelopeAnimationProps {
 export default function EnvelopeAnimation({ guestName, onAnimationComplete }: EnvelopeAnimationProps) {
   const [isOpening, setIsOpening] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    // If user prefers reduced motion, skip the envelope and go straight to invitation
+    if (prefersReducedMotion) {
+      setIsComplete(true);
+      onAnimationComplete();
+      return;
+    }
+
     // Start opening animation after 4 seconds
     const openTimer = setTimeout(() => {
       setIsOpening(true);
@@ -28,7 +36,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
       clearTimeout(openTimer);
       clearTimeout(completeTimer);
     };
-  }, [onAnimationComplete]);
+  }, [onAnimationComplete, prefersReducedMotion]);
 
   if (isComplete) return null;
 
