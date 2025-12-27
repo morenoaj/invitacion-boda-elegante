@@ -238,7 +238,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                           fill="#D99999"
                           opacity="0.8"
                         />
-                        {/* Iniciales */}
+                        {/* Iniciales - Note: inline styles required for SVG text sizing */}
                         <text 
                           x="50" 
                           y="85" 
