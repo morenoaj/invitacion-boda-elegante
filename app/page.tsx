@@ -10,35 +10,44 @@ import EnvelopeAnimation from '../components/EnvelopeAnimation';
  *
  * Cómo generar links personalizados:
  *
- * Formato: https://tu-sitio.vercel.app?nombres=Nombre+del+Invitado
+ * Formato: https://tu-sitio.vercel.app?nombres=Nombre+del+Invitado&puestos=2
  *
  * Ejemplos:
- * - https://tu-sitio.vercel.app?nombres=Juan+Pérez
- * - https://tu-sitio.vercel.app?nombres=María+y+Carlos+Rodríguez
- * - https://tu-sitio.vercel.app?nombres=Familia+González
+ * - https://tu-sitio.vercel.app?nombres=Juan+Pérez&puestos=1
+ * - https://tu-sitio.vercel.app?nombres=María+y+Carlos+Rodríguez&puestos=2
+ * - https://tu-sitio.vercel.app?nombres=Familia+González&puestos=4
+ *
+ * Parámetros:
+ * - nombres: Nombre del invitado o invitados (requerido)
+ * - puestos: Número de lugares asignados (opcional, por defecto 1)
  *
  * Para generar múltiples links:
  * 1. Crea un Excel/Google Sheets con tu lista de invitados
- * 2. En una columna pon: =CONCATENAR("https://tu-sitio.vercel.app?nombres=", SUSTITUIR(A2, " ", "+"))
- * 3. Copia la fórmula para todos tus invitados
- * 4. Envía cada link personalizado por WhatsApp/Email
+ * 2. Columna A: Nombres, Columna B: Puestos
+ * 3. En columna C: =CONCATENAR("https://tu-sitio.vercel.app?nombres=", SUSTITUIR(A2, " ", "+"), "&puestos=", B2)
+ * 4. Copia la fórmula para todos tus invitados
+ * 5. Envía cada link personalizado por WhatsApp/Email
  */
 
 // Component that uses useSearchParams - must be wrapped in Suspense
 function GuestNameProvider() {
   const searchParams = useSearchParams();
   const nombresParam = searchParams.get('nombres');
+  const puestosParam = searchParams.get('puestos');
 
   // Decode guest name, replacing + with spaces and decoding URI components
   const guestName = nombresParam
     ? decodeURIComponent(nombresParam.replace(/\+/g, ' '))
     : 'Estimado Invitado';
+  
+  // Parse number of seats, default to 1
+  const guestSeats = puestosParam ? parseInt(puestosParam, 10) : 1;
 
-  return <InvitationContent guestName={guestName} />;
+  return <InvitationContent guestName={guestName} guestSeats={guestSeats} />;
 }
 
 // Main invitation content component
-function InvitationContent({ guestName }: { guestName: string }) {
+function InvitationContent({ guestName, guestSeats }: { guestName: string; guestSeats: number }) {
   // Para configurar en Vercel:
   // 1. Ve a tu proyecto en Vercel
   // 2. Settings → Environment Variables
@@ -133,26 +142,8 @@ function InvitationContent({ guestName }: { guestName: string }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
           >
-            {/* Sticky Header with Guest Name */}
-            <motion.div
-              className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-dorado/90 via-dorado-light/90 to-dorado/90 backdrop-blur-sm shadow-lg"
-              initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              <div className="max-w-4xl mx-auto px-4 py-3 text-center">
-                <p className="font-montserrat text-xs tracking-wider text-white/80 mb-1">
-                  INVITACIÓN PERSONAL PARA
-                </p>
-                <div className="h-px bg-gradient-to-r from-transparent via-white/50 to-transparent mb-1"></div>
-                <p className="font-great-vibes text-2xl md:text-3xl text-white">
-                  {guestName}
-                </p>
-              </div>
-            </motion.div>
-
       {/* Hero Section - Foto Principal */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-10 pt-32">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-10">
         {/* Decoraciones de fondo */}
         <motion.div
           className="absolute top-20 right-8 w-16 h-16 opacity-30"
@@ -208,15 +199,17 @@ function InvitationContent({ guestName }: { guestName: string }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <p className="font-great-vibes text-4xl md:text-5xl text-dorado mb-2">
-              Queridos
+            <p className="font-montserrat text-sm tracking-widest text-gray-600 mb-3">
+              CON CARIÑO INVITAMOS A
             </p>
-            <p className="font-great-vibes text-3xl md:text-4xl text-rojo-suave">
-              {guestName}
-            </p>
-            <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4 mx-auto max-w-xs"></div>
+            <div className="bg-white/40 backdrop-blur-sm rounded-2xl py-4 px-6 shadow-lg border-2 border-dorado/20">
+              <p className="font-great-vibes text-5xl md:text-6xl text-dorado drop-shadow-lg">
+                {guestName}
+              </p>
+            </div>
+            <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-6 mx-auto max-w-xs"></div>
             <p className="font-montserrat text-sm text-gray-700 tracking-wide">
-              Los invitamos a ser parte de nuestro día especial
+              A ser parte de nuestro día especial
             </p>
           </motion.div>
 
@@ -1035,7 +1028,7 @@ function InvitationContent({ guestName }: { guestName: string }) {
 
           {/* Icono WhatsApp */}
           <motion.div 
-            className="w-16 h-16 mx-auto mb-4"
+            className="w-16 h-16 mx-auto mb-6"
             whileHover={{ scale: 1.2, rotate: 10 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -1046,6 +1039,39 @@ function InvitationContent({ guestName }: { guestName: string }) {
           </motion.div>
 
           <div className="space-y-6">
+            {/* Información de puestos */}
+            <motion.div
+              className="bg-gradient-to-br from-dorado/10 to-rojo-suave/10 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-dorado/30"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <p className="font-montserrat text-sm tracking-wide text-gray-700 mb-3">
+                Esta invitación es válida para
+              </p>
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <motion.div
+                  className="text-4xl"
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  👥
+                </motion.div>
+                <p className="font-great-vibes text-5xl text-dorado">
+                  {guestSeats}
+                </p>
+                <p className="font-montserrat text-2xl text-dorado-dark font-semibold">
+                  {guestSeats === 1 ? 'puesto' : 'puestos'}
+                </p>
+              </div>
+              <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-3"></div>
+              <p className="font-montserrat text-xs text-gray-600 italic">
+                {guestSeats === 1 ? 'Esperamos tu presencia' : 'Esperamos la presencia de todos'}
+              </p>
+            </motion.div>
+
+            {/* Mensaje de confirmación */}
             <p className="font-montserrat text-base tracking-wide text-gray-700 leading-relaxed px-4">
               APRECIARÍAMOS QUE NOS DEJES SABER TU ASISTENCIA<br/>
               A MÁS TARDAR EL DÍA<br/>
@@ -1056,7 +1082,7 @@ function InvitationContent({ guestName }: { guestName: string }) {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 mt-6">
               {/* Botón Confirmar Asistencia */}
               <motion.a
-                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("¡Hola! Con mucha alegría confirmo que asistiré a celebrar su amor el 14 de febrero. ¡Nos vemos allá! 🎉💒")}`}
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("¡Hola! Con mucha alegría confirmo que asistiré a celebrar su amor el 14 de febrero. ¡Nos vemos allá! 🎉💕")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-rojo-suave to-rojo-suave-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
