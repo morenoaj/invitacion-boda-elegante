@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 interface EnvelopeAnimationProps {
   guestName: string;
@@ -12,6 +12,37 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
   const [isOpening, setIsOpening] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const prefersReducedMotion = useReducedMotion();
+
+  // Pre-generate particle positions for consistent animations
+  const backgroundParticles = useMemo(() => {
+    return Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: 3 + Math.random() * 2,
+      delay: Math.random() * 2,
+    }));
+  }, []);
+
+  // Pre-generate confetti particles for consistent animation
+  const confettiParticles = useMemo(() => {
+    return Array.from({ length: 30 }, (_, i) => {
+      const angle = (Math.random() - 0.5) * 140 - 90;
+      const distance = 120 + Math.random() * 180;
+      return {
+        id: i,
+        color: 
+          i % 4 === 0 ? '#D4AF37' : 
+          i % 4 === 1 ? '#D99999' : 
+          i % 4 === 2 ? '#E5C158' :
+          '#FFF8F0',
+        x: Math.cos(angle * Math.PI / 180) * distance,
+        y: Math.sin(angle * Math.PI / 180) * distance,
+        rotate: Math.random() * 720,
+        delay: Math.random() * 0.3,
+      };
+    });
+  }, []);
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -47,22 +78,22 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
       >
         {/* Partículas doradas flotantes */}
         <div className="absolute inset-0">
-          {[...Array(15)].map((_, i) => (
+          {backgroundParticles.map((particle) => (
             <motion.div
-              key={i}
+              key={particle.id}
               className="absolute w-1.5 h-1.5 bg-dorado/40 rounded-full"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
               }}
               animate={{
                 y: [0, -20, 0],
                 opacity: [0.2, 0.6, 0.2],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: particle.duration,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: particle.delay,
               }}
             />
           ))}
@@ -256,36 +287,28 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
             {/* Confeti explosivo al abrir */}
             {isOpening && (
               <div className="absolute inset-0 pointer-events-none overflow-visible">
-                {[...Array(30)].map((_, i) => {
-                  const angle = (Math.random() - 0.5) * 140 - 90; // Hacia arriba
-                  const distance = 120 + Math.random() * 180;
-                  return (
-                    <motion.div
-                      key={i}
-                      className="absolute left-1/2 top-[20%] w-2 h-2 rounded-full"
-                      style={{
-                        backgroundColor: 
-                          i % 4 === 0 ? '#D4AF37' : 
-                          i % 4 === 1 ? '#D99999' : 
-                          i % 4 === 2 ? '#E5C158' :
-                          '#FFF8F0',
-                      }}
-                      initial={{ opacity: 1, scale: 0 }}
-                      animate={{
-                        opacity: [1, 1, 0],
-                        scale: [0, 1.2, 0.6],
-                        x: Math.cos(angle * Math.PI / 180) * distance,
-                        y: Math.sin(angle * Math.PI / 180) * distance,
-                        rotate: Math.random() * 720,
-                      }}
-                      transition={{
-                        duration: 1.8,
-                        delay: Math.random() * 0.3,
-                        ease: "easeOut",
-                      }}
-                    />
-                  );
-                })}
+                {confettiParticles.map((particle) => (
+                  <motion.div
+                    key={particle.id}
+                    className="absolute left-1/2 top-[20%] w-2 h-2 rounded-full"
+                    style={{
+                      backgroundColor: particle.color,
+                    }}
+                    initial={{ opacity: 1, scale: 0 }}
+                    animate={{
+                      opacity: [1, 1, 0],
+                      scale: [0, 1.2, 0.6],
+                      x: particle.x,
+                      y: particle.y,
+                      rotate: particle.rotate,
+                    }}
+                    transition={{
+                      duration: 1.8,
+                      delay: particle.delay,
+                      ease: "easeOut",
+                    }}
+                  />
+                ))}
               </div>
             )}
 
