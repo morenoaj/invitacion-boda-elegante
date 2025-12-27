@@ -1027,56 +1027,90 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
           {/* Título */}
           <h2 className="font-great-vibes text-5xl text-dorado mb-6">Confirmación</h2>
 
-          {/* Icono WhatsApp */}
+          {/* Icono WhatsApp Mejorado */}
           <motion.div 
-            className="w-16 h-16 mx-auto mb-6"
+            className="w-20 h-20 mx-auto mb-6"
             whileHover={{ scale: 1.2, rotate: 10 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <svg viewBox="0 0 100 100" className="fill-dorado">
-              <circle cx="50" cy="50" r="35" stroke="#D99999" strokeWidth="2" fill="none"/>
-              <path d="M50,20 C33,20 19,34 19,51 C19,56 20,61 22,65 L19,81 L35,78 C39,80 44,81 50,81 C67,81 81,67 81,50 C81,33 67,20 50,20 Z M50,25 C64,25 76,37 76,51 C76,65 80,76 50,76 C45,76 41,75 37,73 L36,72 L28,74 L30,66 L29,65 C27,61 25,56 25,51 C25,37 37,25 50,25 Z M42,40 C41,40 40,40 39,41 C38,42 36,44 36,47 C36,50 38,53 39,54 C40,55 45,62 52,65 C53,66 54,66 55,67 C56,67 57,67 58,67 C59,67 61,66 62,65 C63,80 80,62 80,61 C64,60 80,59 63,59 L60,58 C59,57 57,56 56,57 C55,58 54,59 53,59 C53,59 53,59 52,59 C52,59 51,58 51,58 C48,57 45,54 43,51 C43,51 42,50 42,49 C42,48 43,47 43,46 C43,46 44,45 44,45 C44,44 44,43 43,42 C43,41 42,40 42,40 Z"/>
+            <svg viewBox="0 0 100 100" className="drop-shadow-lg">
+              {/* Círculo de fondo verde WhatsApp */}
+              <circle cx="50" cy="50" r="45" fill="#25D366"/>
+              
+              {/* Ícono de WhatsApp en blanco */}
+              <g fill="white">
+                <path d="M50,20 C33.4,20 20,33.4 20,50 C20,55.2 21.4,60.1 23.8,64.3 L21,79 L36.2,76.3 C40.2,78.5 44.9,79.8 50,79.8 C66.6,79.8 80,66.4 80,50 C80,33.4 66.6,20 50,20 Z M50,75 C45.6,75 41.4,73.9 37.7,72 L36.9,71.6 L28.5,73.5 L30.5,65.3 L30,64.5 C27.9,60.7 26.8,56.4 26.8,52 C26.8,37.2 38.7,25.2 50.5,25.2 C56.3,25.2 61.8,27.5 66,31.7 C70.2,35.9 72.5,41.4 72.5,47.2 C72.5,62 60.6,74 46.8,74 L50,75 Z"/>
+                
+                <path d="M63,56 C62.5,55.8 60.2,54.7 59.7,54.5 C59.2,54.3 58.8,54.2 58.5,54.7 C58.1,55.2 57.3,56.2 56.9,56.5 C56.6,56.9 56.2,56.9 55.7,56.7 C55.2,56.5 53.5,55.9 51.5,54.2 C49.9,52.8 48.8,51.1 48.5,50.6 C48.2,50.1 48.5,49.8 48.7,49.6 C48.9,49.4 49.2,49 49.4,48.7 C49.6,48.4 49.7,48.2 49.9,47.9 C50.1,47.5 50,47.2 49.9,47 C49.8,46.8 48.8,44.5 48.3,43.5 C47.8,42.5 47.3,42.6 47,42.6 C46.7,42.6 46.3,42.6 46,42.6 C45.6,42.6 45,42.7 44.5,43.2 C44,43.7 42.8,44.8 42.8,47.1 C42.8,49.4 44.5,51.6 44.8,51.9 C45,52.3 48.8,58 54.6,60 C55.9,60.5 56.9,60.8 57.7,61 C59,61.4 60.2,61.3 61.1,61.2 C62.1,61.1 64,60.1 64.5,59 C65,57.9 65,57 64.9,56.8 C64.8,56.6 64.4,56.5 63.8,56.2 L63,56 Z"/>
+              </g>
             </svg>
           </motion.div>
 
           <div className="space-y-6">
-            {/* Información de puestos */}
+            {/* Información de puestos - MEJORADA */}
             <motion.div
-              className="bg-gradient-to-br from-dorado/10 to-rojo-suave/10 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-2 border-dorado/30"
+              className="bg-gradient-to-br from-dorado/20 via-white to-rojo-suave/20 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border-4 border-dorado/40"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <p className="font-montserrat text-sm tracking-wide text-gray-700 mb-3">
-                Esta invitación es válida para
+              <p className="font-montserrat text-base tracking-wide text-gray-800 font-semibold mb-4">
+                ESTA INVITACIÓN INCLUYE
               </p>
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <motion.div
-                  className="text-4xl"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  👥
-                </motion.div>
-                <p className="font-great-vibes text-5xl text-dorado">
-                  {guestSeats}
-                </p>
-                <p className="font-montserrat text-2xl text-dorado-dark font-semibold">
-                  {guestSeats === 1 ? 'puesto' : 'puestos'}
+              
+              <div className="bg-white/80 rounded-2xl p-6 mb-4 shadow-lg">
+                <div className="flex items-center justify-center gap-4">
+                  {/* Icono de personas más claro */}
+                  <motion.div
+                    className="flex gap-1"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    {Array.from({ length: Math.min(guestSeats, 5) }).map((_, index) => (
+                      <div key={index} className="text-4xl">
+                        👤
+                      </div>
+                    ))}
+                    {guestSeats > 5 && (
+                      <div className="text-4xl text-dorado font-bold">
+                        +{guestSeats - 5}
+                      </div>
+                    )}
+                  </motion.div>
+                </div>
+                
+                <div className="mt-4">
+                  <p className="font-great-vibes text-6xl text-dorado drop-shadow-lg">
+                    {guestSeats}
+                  </p>
+                  <p className="font-montserrat text-3xl text-dorado-dark font-bold mt-2">
+                    {guestSeats === 1 ? 'PUESTO' : 'PUESTOS'}
+                  </p>
+                </div>
+              </div>
+              
+              <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
+              
+              <p className="font-montserrat text-sm text-gray-700 leading-relaxed">
+                {guestSeats === 1 
+                  ? '🎊 Esperamos tu presencia' 
+                  : `🎊 Esperamos la presencia de ${guestSeats === 2 ? 'ambos' : `los ${guestSeats}`}`
+                }
+              </p>
+              
+              <div className="mt-4 bg-rojo-suave/20 rounded-xl p-3">
+                <p className="font-montserrat text-xs text-gray-600 italic">
+                  💡 Por favor confirma asistencia para {guestSeats === 1 ? 'tu puesto' : `tus ${guestSeats} puestos`}
                 </p>
               </div>
-              <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-3"></div>
-              <p className="font-montserrat text-xs text-gray-600 italic">
-                {guestSeats === 1 ? 'Esperamos tu presencia' : 'Esperamos la presencia de todos'}
-              </p>
             </motion.div>
 
             {/* Mensaje de confirmación */}
             <p className="font-montserrat text-base tracking-wide text-gray-700 leading-relaxed px-4">
               APRECIARÍAMOS QUE NOS DEJES SABER TU ASISTENCIA<br/>
               A MÁS TARDAR EL DÍA<br/>
-              <span className="text-dorado font-semibold text-lg">31 DE DICIEMBRE</span>
+              <span className="text-dorado font-semibold text-lg">10 DE ENERO</span>
             </p>
 
             {/* Dos botones de confirmación */}

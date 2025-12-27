@@ -21,16 +21,16 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
       return;
     }
 
-    // Start opening animation after 4 seconds
+    // Start opening animation after 3 seconds
     const openTimer = setTimeout(() => {
       setIsOpening(true);
-    }, 4000);
+    }, 3000);
 
     // Complete animation and notify parent after opening
     const completeTimer = setTimeout(() => {
       setIsComplete(true);
       onAnimationComplete();
-    }, 6500); // 4s wait + 2.5s animation
+    }, 6000); // 3s wait + 3s animation
 
     return () => {
       clearTimeout(openTimer);
@@ -43,191 +43,212 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[100] bg-gradient-to-br from-crema via-white to-crema-dark flex items-center justify-center"
+        className="fixed inset-0 z-[100] bg-gradient-to-br from-crema via-white to-crema-dark flex items-center justify-center overflow-hidden"
         initial={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 1.5 }}
       >
-        <div className="relative w-full max-w-md px-4">
-          {/* Envelope Container */}
+        {/* Partículas flotantes de fondo */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-dorado/30 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative w-full max-w-md px-6">
+          {/* Elementos decorativos alrededor del sobre */}
+          <motion.div
+            className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-24 h-24 opacity-40"
+            animate={{ 
+              rotate: [0, 360],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{ 
+              duration: 6, 
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            <svg viewBox="0 0 100 100" className="fill-dorado drop-shadow-lg">
+              <path d="M50,10 L55,40 L85,40 L60,58 L70,90 L50,72 L30,90 L40,58 L15,40 L45,40 Z"/>
+            </svg>
+          </motion.div>
+
+          {/* Corazón flotante */}
+          <motion.div
+            className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 w-20 h-20 opacity-40"
+            animate={{ 
+              scale: [1, 1.3, 1],
+              y: [0, -15, 0],
+            }}
+            transition={{ 
+              duration: 2.5, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <svg viewBox="0 0 100 100" className="fill-rojo-suave drop-shadow-lg">
+              <path d="M50,85 C50,85 20,65 20,45 C20,30 30,25 37.5,25 C42.5,25 47.5,27.5 50,32.5 C52.5,27.5 57.5,25 62.5,25 C70,25 80,30 80,45 C80,65 50,85 50,85 Z"/>
+            </svg>
+          </motion.div>
+
+          {/* Contenedor del sobre */}
           <motion.div
             className="relative"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial={{ scale: 0.5, opacity: 0, y: 50 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
           >
-            {/* Decorative elements around envelope */}
+            {/* Sobre - Parte trasera */}
             <motion.div
-              className="absolute -top-8 -left-8 w-12 h-12 opacity-40"
-              animate={{ 
-                rotate: [0, 360],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity,
-                ease: "linear"
-              }}
+              className="relative w-full h-80 bg-gradient-to-br from-white via-crema to-crema-dark rounded-lg shadow-2xl border-4 border-dorado/30"
+              style={{ perspective: "1000px" }}
             >
-              <svg viewBox="0 0 100 100" className="fill-dorado">
-                <path d="M50,10 L55,40 L85,40 L60,58 L70,90 L50,72 L30,90 L40,58 L15,40 L45,40 Z"/>
-              </svg>
-            </motion.div>
+              {/* Decoración del sobre - Borde dorado */}
+              <div className="absolute inset-4 border-2 border-dorado/40 rounded-md"></div>
+              <div className="absolute inset-6 border border-rojo-suave/30 rounded-sm"></div>
 
-            <motion.div
-              className="absolute -bottom-8 -right-8 w-16 h-16 opacity-30"
-              animate={{ 
-                scale: [1, 1.2, 1],
-                rotate: [0, -10, 0]
-              }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <svg viewBox="0 0 100 100" className="fill-rojo-suave">
-                <circle cx="50" cy="30" r="15"/>
-                <ellipse cx="50" cy="60" rx="25" ry="35"/>
-              </svg>
-            </motion.div>
-
-            {/* Main Envelope */}
-            <div className="relative bg-gradient-to-br from-[#FFF8E7] to-[#F5F5DC] rounded-lg shadow-2xl overflow-hidden border-4 border-dorado/30">
-              {/* Envelope Body */}
-              <div className="relative p-8 md:p-12">
-                {/* Decorative border pattern */}
-                <div className="absolute inset-0 opacity-20">
-                  <svg className="w-full h-full" preserveAspectRatio="none">
-                    <rect x="10" y="10" width="calc(100% - 20px)" height="calc(100% - 20px)" 
-                      fill="none" stroke="#D4AF37" strokeWidth="2" strokeDasharray="10,5"/>
-                  </svg>
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10 text-center space-y-6">
-                  {/* Top decorative elements */}
-                  <motion.div 
-                    className="flex justify-center gap-4 mb-4"
-                    animate={{ 
-                      scale: [1, 1.1, 1],
-                      opacity: [0.6, 1, 0.6]
-                    }}
-                    transition={{ 
-                      duration: 2, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <span className="text-3xl">🌟</span>
-                    <span className="text-3xl">✨</span>
-                    <span className="text-3xl">💕</span>
-                  </motion.div>
-
-                  {/* "Para:" text */}
-                  <div>
-                    <p className="font-great-vibes text-3xl md:text-4xl text-dorado-dark mb-2">
-                      Para:
-                    </p>
-                    <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-3"></div>
-                    <p className="font-montserrat text-xl md:text-2xl text-gray-800 font-semibold px-4 leading-relaxed">
-                      {guestName}
-                    </p>
-                  </div>
-
-                  {/* Bottom decorative elements */}
-                  <motion.div 
-                    className="flex justify-center gap-4 mt-4"
-                    animate={{ 
-                      scale: [1, 1.1, 1],
-                      opacity: [0.6, 1, 0.6]
-                    }}
-                    transition={{ 
-                      duration: 2, 
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1
-                    }}
-                  >
-                    <span className="text-3xl">🌟</span>
-                    <span className="text-3xl">✨</span>
-                    <span className="text-3xl">💕</span>
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* Envelope Flap - animates when opening */}
+              {/* Nombre del invitado en el sobre */}
               <motion.div
-                className="absolute inset-x-0 top-0 h-full origin-top"
-                style={{
-                  background: 'linear-gradient(135deg, #E5C158 0%, #D4AF37 50%, #B8941F 100%)',
-                  clipPath: 'polygon(0 0, 100% 0, 50% 40%)',
+                className="absolute inset-0 flex flex-col items-center justify-center p-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isOpening ? 0 : 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <p className="font-montserrat text-xs tracking-widest text-dorado-dark mb-3">
+                  PARA
+                </p>
+                <div className="h-px w-32 bg-gradient-to-r from-transparent via-dorado to-transparent mb-4"></div>
+                <p className="font-great-vibes text-4xl text-dorado text-center leading-relaxed drop-shadow-md">
+                  {guestName}
+                </p>
+                <div className="h-px w-32 bg-gradient-to-r from-transparent via-dorado to-transparent mt-4"></div>
+                <motion.p
+                  className="font-montserrat text-xs tracking-wider text-gray-600 mt-6 italic"
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  Abriendo invitación...
+                </motion.p>
+              </motion.div>
+
+              {/* Tapa del sobre - Animación de apertura */}
+              <motion.div
+                className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-br from-dorado via-dorado-light to-dorado-dark rounded-t-lg shadow-xl border-4 border-dorado/50"
+                style={{ 
+                  transformOrigin: "top center",
+                  zIndex: 10,
                 }}
                 animate={{
                   rotateX: isOpening ? -180 : 0,
-                  opacity: isOpening ? 0 : 0.95,
                 }}
                 transition={{
-                  duration: 1.5,
-                  ease: "easeOut"
+                  duration: 2,
+                  ease: "easeInOut",
                 }}
               >
-                {/* Wax seal decoration */}
-                <motion.div 
-                  className="absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                  animate={{
-                    scale: isOpening ? 0 : 1,
-                    opacity: isOpening ? 0 : 1,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                  }}
+                {/* Triángulo decorativo de la tapa */}
+                <svg 
+                  className="absolute bottom-0 left-0 right-0 w-full h-12" 
+                  viewBox="0 0 100 20"
+                  preserveAspectRatio="none"
                 >
-                  <div className="w-16 h-16 rounded-full bg-rojo-suave border-4 border-rojo-suave-dark flex items-center justify-center shadow-lg">
-                    <svg viewBox="0 0 100 100" className="w-10 h-10 fill-white">
-                      <circle cx="50" cy="35" r="12"/>
-                      <ellipse cx="50" cy="60" rx="20" ry="28"/>
-                      <path d="M30,50 Q25,65 50,75 Q75,65 70,50" fill="#FFD4D4"/>
-                    </svg>
-                  </div>
+                  <polygon 
+                    points="0,0 50,20 100,0" 
+                    className="fill-crema-dark opacity-90"
+                  />
+                </svg>
+
+                {/* Sello decorativo */}
+                <motion.div
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16"
+                  animate={{ rotate: isOpening ? 180 : 0 }}
+                  transition={{ duration: 2 }}
+                >
+                  <svg viewBox="0 0 100 100" className="drop-shadow-lg">
+                    <circle cx="50" cy="50" r="35" fill="white" opacity="0.9"/>
+                    <circle cx="50" cy="50" r="30" fill="none" stroke="#D4AF37" strokeWidth="2"/>
+                    <text 
+                      x="50" 
+                      y="55" 
+                      textAnchor="middle" 
+                      className="font-great-vibes text-2xl fill-dorado"
+                      style={{ fontSize: "24px" }}
+                    >
+                      M & A
+                    </text>
+                  </svg>
                 </motion.div>
               </motion.div>
 
-              {/* Invitation card sliding out */}
-              <motion.div
-                className="absolute inset-0 bg-white rounded-lg shadow-xl m-2"
-                initial={{ y: 0 }}
-                animate={{
-                  y: isOpening ? -400 : 0,
-                  opacity: isOpening ? 0 : 0,
-                }}
-                transition={{
-                  duration: 1.5,
-                  delay: 0.5,
-                  ease: "easeOut"
-                }}
-              />
-            </div>
+              {/* Brillo al abrir */}
+              {isOpening && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-t from-transparent via-dorado/30 to-transparent rounded-lg"
+                  initial={{ opacity: 0, y: "100%" }}
+                  animate={{ opacity: [0, 1, 0], y: "-100%" }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                />
+              )}
+            </motion.div>
 
-            {/* Shimmer effect on envelope when closed */}
-            {!isOpening && (
-              <motion.div
-                className="absolute inset-0 rounded-lg"
-                style={{
-                  background: 'linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent)',
-                  backgroundSize: '200% 100%',
-                }}
-                animate={{
-                  backgroundPosition: ['0% 0%', '200% 0%'],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
+            {/* Confeti al abrir */}
+            {isOpening && (
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(30)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-2 h-2 rounded-full"
+                    style={{
+                      left: "50%",
+                      top: "30%",
+                      backgroundColor: i % 3 === 0 ? '#D4AF37' : i % 3 === 1 ? '#D99999' : '#FFF8F0',
+                    }}
+                    initial={{ opacity: 1, scale: 0 }}
+                    animate={{
+                      opacity: [1, 1, 0],
+                      scale: [0, 1, 0.5],
+                      x: (Math.random() - 0.5) * 400,
+                      y: [0, -100, -200],
+                      rotate: Math.random() * 360,
+                    }}
+                    transition={{
+                      duration: 2,
+                      delay: Math.random() * 0.3,
+                      ease: "easeOut",
+                    }}
+                  />
+                ))}
+              </div>
             )}
           </motion.div>
+
+          {/* Texto inferior */}
+          <motion.p
+            className="text-center mt-8 font-great-vibes text-2xl text-dorado drop-shadow-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 1, 0] }}
+            transition={{ duration: 5, times: [0, 0.2, 0.8, 1] }}
+          >
+            Te invitamos a celebrar con nosotros
+          </motion.p>
         </div>
       </motion.div>
     </AnimatePresence>
