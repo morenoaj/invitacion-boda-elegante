@@ -41,7 +41,8 @@ function GuestNameProvider() {
     : 'Estimado Invitado';
   
   // Parse number of seats, default to 1
-  const guestSeats = puestosParam ? parseInt(puestosParam, 10) : 1;
+  const parsedSeats = puestosParam ? parseInt(puestosParam, 10) : 1;
+  const guestSeats = !isNaN(parsedSeats) && parsedSeats > 0 ? parsedSeats : 1;
 
   return <InvitationContent guestName={guestName} guestSeats={guestSeats} />;
 }
