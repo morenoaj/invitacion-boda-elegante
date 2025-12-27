@@ -1,17 +1,41 @@
 'use client';
 
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 interface EnvelopeAnimationProps {
   guestName: string;
   onAnimationComplete: () => void;
 }
 
+// Pre-generate particle positions for performance
+const generateParticles = (count: number) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    duration: 3 + Math.random() * 2,
+    delay: Math.random() * 2,
+  }));
+};
+
+const BACKGROUND_PARTICLES = generateParticles(20);
+
 export default function EnvelopeAnimation({ guestName, onAnimationComplete }: EnvelopeAnimationProps) {
   const [isOpening, setIsOpening] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const prefersReducedMotion = useReducedMotion();
+
+  // Memoize confetti particles for performance
+  const confettiParticles = useMemo(() => {
+    return Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      color: i % 3 === 0 ? '#D4AF37' : i % 3 === 1 ? '#D99999' : '#FFF8F0',
+      x: (Math.random() - 0.5) * 400,
+      rotate: Math.random() * 360,
+      delay: Math.random() * 0.3,
+    }));
+  }, []);
 
   useEffect(() => {
     // If user prefers reduced motion, skip the envelope and go straight to invitation
@@ -50,13 +74,13 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
       >
         {/* Partículas flotantes de fondo */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
+          {BACKGROUND_PARTICLES.map((particle) => (
             <motion.div
-              key={i}
+              key={particle.id}
               className="absolute w-2 h-2 bg-dorado/30 rounded-full"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
               }}
               animate={{
                 y: [0, -30, 0],
@@ -64,9 +88,9 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                 scale: [1, 1.5, 1],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: particle.duration,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: particle.delay,
               }}
             />
           ))}
@@ -189,8 +213,8 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                       x="50" 
                       y="55" 
                       textAnchor="middle" 
-                      className="font-great-vibes text-2xl fill-dorado"
-                      style={{ fontSize: "24px" }}
+                      className="font-great-vibes fill-dorado"
+                      fontSize="24"
                     >
                       M & A
                     </text>
@@ -212,26 +236,26 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
             {/* Confeti al abrir */}
             {isOpening && (
               <div className="absolute inset-0 pointer-events-none">
-                {[...Array(30)].map((_, i) => (
+                {confettiParticles.map((particle) => (
                   <motion.div
-                    key={i}
+                    key={particle.id}
                     className="absolute w-2 h-2 rounded-full"
                     style={{
                       left: "50%",
                       top: "30%",
-                      backgroundColor: i % 3 === 0 ? '#D4AF37' : i % 3 === 1 ? '#D99999' : '#FFF8F0',
+                      backgroundColor: particle.color,
                     }}
                     initial={{ opacity: 1, scale: 0 }}
                     animate={{
                       opacity: [1, 1, 0],
                       scale: [0, 1, 0.5],
-                      x: (Math.random() - 0.5) * 400,
+                      x: particle.x,
                       y: [0, -100, -200],
-                      rotate: Math.random() * 360,
+                      rotate: particle.rotate,
                     }}
                     transition={{
                       duration: 2,
-                      delay: Math.random() * 0.3,
+                      delay: particle.delay,
                       ease: "easeOut",
                     }}
                   />
