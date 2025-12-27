@@ -1095,7 +1095,9 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
               <p className="font-montserrat text-sm text-gray-700 leading-relaxed">
                 {guestSeats === 1 
                   ? '🎊 Esperamos tu presencia' 
-                  : `🎊 Esperamos la presencia de ${guestSeats === 2 ? 'ambos' : `los ${guestSeats}`}`
+                  : guestSeats === 2
+                    ? '🎊 Esperamos la presencia de ambos'
+                    : `🎊 Esperamos la presencia de los ${guestSeats}`
                 }
               </p>
               
