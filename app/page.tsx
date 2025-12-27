@@ -286,9 +286,9 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
               ></motion.div>
               
               <div className="flex items-center gap-3">
-                <h1 className="font-great-vibes text-6xl text-dorado">Mariela</h1>
-                <span className="font-great-vibes text-3xl text-rojo-suave">&</span>
-                <h1 className="font-great-vibes text-6xl text-dorado">Alex</h1>
+                <h1 className="font-great-vibes text-7xl sm:text-8xl text-dorado">Mariela</h1>
+                <span className="font-great-vibes text-4xl text-rojo-suave">&</span>
+                <h1 className="font-great-vibes text-7xl sm:text-8xl text-dorado">Alex</h1>
               </div>
               
               <motion.div 
@@ -308,11 +308,11 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <div className="text-center space-y-2">
-              <p className="font-montserrat text-sm tracking-widest text-dorado-dark">SÁBADO</p>
+              <p className="font-montserrat text-base tracking-widest text-dorado-dark">SÁBADO</p>
               <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent"></div>
-              <p className="font-montserrat text-xl tracking-[0.3em] text-dorado font-semibold">14 FEBRERO</p>
+              <p className="font-montserrat text-3xl tracking-[0.3em] text-dorado font-semibold">14 FEBRERO</p>
               <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent"></div>
-              <p className="font-montserrat text-sm tracking-widest text-dorado-dark">2 0 2 6</p>
+              <p className="font-montserrat text-lg tracking-widest text-dorado-dark">2 0 2 6</p>
             </div>
           </motion.div>
 
@@ -379,7 +379,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
           {/* Versículo Bíblico */}
           <div className="bg-gradient-to-br from-white/80 to-crema/60 backdrop-blur-sm rounded-3xl p-6 md:p-10 shadow-xl border-2 border-dorado/20">
             <motion.p
-              className="font-great-vibes text-3xl md:text-4xl text-dorado-dark leading-relaxed mb-4"
+              className="font-great-vibes text-4xl md:text-5xl text-dorado-dark leading-relaxed mb-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -458,17 +458,17 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
           </motion.div>
 
           <div className="space-y-4">
-            <h3 className="font-montserrat text-lg tracking-wider text-dorado-dark">
+            <h3 className="font-montserrat text-xl sm:text-2xl tracking-wider text-dorado-dark font-semibold">
               CAPILLA SAN JUAN BOSCO
             </h3>
             
             <div className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent"></div>
             
-            <p className="font-montserrat text-sm tracking-wide text-gray-700">
+            <p className="font-montserrat text-base sm:text-lg tracking-wide text-gray-700 leading-relaxed">
               Arraiján, Vía Loma Coba, Sector La Paz.
             </p>
             
-            <p className="font-montserrat text-xl font-bold tracking-widest text-dorado mt-4">
+            <p className="font-montserrat text-2xl sm:text-3xl font-bold tracking-widest text-dorado mt-4">
               6 : 0 0  &nbsp; P . M .
             </p>
 
@@ -535,17 +535,17 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
           </motion.div>
 
           <div className="space-y-4">
-            <h3 className="font-montserrat text-lg tracking-wider text-dorado-dark">
+            <h3 className="font-montserrat text-xl sm:text-2xl tracking-wider text-dorado-dark font-semibold">
               SALA EVA VICTORIA
             </h3>
             
             <div className="h-px bg-gradient-to-r from-transparent via-rojo-suave to-transparent"></div>
             
-            <p className="font-montserrat text-sm tracking-wide text-gray-700">
+            <p className="font-montserrat text-base sm:text-lg tracking-wide text-gray-700 leading-relaxed">
               Plaza Nuevo Amanecer, Segundo Piso, Nuevo Arraiján, (Frente al Super 99 de Valle Hermoso)
             </p>
             
-            <p className="font-montserrat text-xl font-bold tracking-widest text-dorado mt-4">
+            <p className="font-montserrat text-2xl sm:text-3xl font-bold tracking-widest text-dorado mt-4">
               7 : 3 0  &nbsp; P . M .
             </p>
 
@@ -623,7 +623,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
                 ETIQUETA FORMAL
               </h3>
               <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent mb-4"></div>
-              <p className="font-montserrat text-sm tracking-wide text-gray-700 leading-relaxed">
+              <p className="font-montserrat text-base sm:text-lg tracking-wide text-gray-700 leading-relaxed">
                 Para las damas: Vestidos largos o midi elegantes<br/>
                 Para los caballeros: Traje formal
               </p>
@@ -772,7 +772,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
             </motion.div>
 
             <motion.p
-              className="font-great-vibes text-2xl md:text-3xl text-dorado-dark leading-relaxed mb-3"
+              className="font-great-vibes text-3xl md:text-4xl text-dorado-dark leading-relaxed mb-3"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -1081,10 +1081,10 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
                 </div>
                 
                 <div className="mt-4">
-                  <p className="font-great-vibes text-6xl text-dorado drop-shadow-lg">
+                  <p className="font-great-vibes text-6xl sm:text-7xl text-dorado drop-shadow-lg">
                     {guestSeats}
                   </p>
-                  <p className="font-montserrat text-3xl text-dorado-dark font-bold mt-2">
+                  <p className="font-montserrat text-3xl sm:text-4xl text-dorado-dark font-bold mt-2">
                     {guestSeats === 1 ? 'PUESTO' : 'PUESTOS'}
                   </p>
                 </div>
@@ -1109,38 +1109,38 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
             </motion.div>
 
             {/* Mensaje de confirmación */}
-            <p className="font-montserrat text-base tracking-wide text-gray-700 leading-relaxed px-4">
+            <p className="font-montserrat text-lg sm:text-xl tracking-wide text-gray-700 leading-relaxed px-4 font-medium">
               APRECIARÍAMOS QUE NOS DEJES SABER TU ASISTENCIA<br/>
               A MÁS TARDAR EL DÍA<br/>
-              <span className="text-dorado font-semibold text-lg">10 DE ENERO</span>
+              <span className="text-dorado font-semibold text-2xl sm:text-3xl">10 DE ENERO</span>
             </p>
 
-            {/* Dos botones de confirmación */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 mt-6">
-              {/* Botón Confirmar Asistencia */}
-              <motion.a
-                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("¡Hola! Con mucha alegría confirmo que asistiré a celebrar su amor el 14 de febrero. ¡Nos vemos allá! 🎉💕")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-rojo-suave to-rojo-suave-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="text-xl">✓</span>
-                <span>SÍ, ASISTIRÉ</span>
-              </motion.a>
-
-              {/* Botón No Poder Asistir */}
+            {/* Dos botones de confirmación - ORDEN ACTUALIZADO */}
+            <div className="flex flex-col-reverse sm:flex-row gap-4 justify-center items-stretch px-4 mt-6">
+              {/* Botón No Poder Asistir - IZQUIERDA en desktop, ABAJO en móvil */}
               <motion.a
                 href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola, lamentablemente no podré asistir a su boda. Les deseo lo mejor en este día tan especial 💕")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-gray-400 to-gray-500 text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                className="flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-gray-400 to-gray-500 text-white font-montserrat text-base font-semibold tracking-wider rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="text-xl">✗</span>
+                <span className="text-2xl">✗</span>
                 <span>NO PODRÉ ASISTIR</span>
+              </motion.a>
+
+              {/* Botón Confirmar Asistencia - DERECHA en desktop, ARRIBA en móvil */}
+              <motion.a
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("¡Hola! Con mucha alegría confirmo que asistiré a celebrar su amor el 14 de febrero. ¡Nos vemos allá! 🎉💕")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-rojo-suave to-rojo-suave-light text-white font-montserrat text-base font-semibold tracking-wider rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-dorado/30"
+                whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(212, 175, 55, 0.5)" }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="text-2xl">✓</span>
+                <span>SÍ, ASISTIRÉ</span>
               </motion.a>
             </div>
           </div>
