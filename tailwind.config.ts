@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         'crema': '#FFF8F0',
+        'crema-light': '#FFFBF5',
         'crema-dark': '#F5EFE7',
         'dorado': '#D4AF37',
         'dorado-light': '#E5C158',
