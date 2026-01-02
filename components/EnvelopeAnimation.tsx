@@ -180,7 +180,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                           animate={{ rotate: isOpening ? 180 : 0 }}
                           transition={{ duration: 1.5 }}
                         >
-                          <div className="w-full h-full bg-white rounded-full border-3 border-white shadow-lg flex items-center justify-center">
+                          <div className="w-full h-full bg-white rounded-full border-4 border-white shadow-lg flex items-center justify-center">
                             <div className="text-center">
                               <div className="text-2xl sm:text-3xl mb-1">💕</div>
                               <p className="font-great-vibes text-lg sm:text-xl text-dorado">
