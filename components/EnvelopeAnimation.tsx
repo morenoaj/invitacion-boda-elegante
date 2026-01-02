@@ -140,7 +140,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                   <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-br from-dorado via-dorado-light to-dorado rounded-t-xl border-2 border-dorado/60">
                     
                     {/* Triángulo de la solapa (parte que entra en el sobre) */}
-                    <div className="absolute -bottom-0 left-0 right-0 h-16">
+                    <div className="absolute bottom-0 left-0 right-0 h-16">
                       <svg 
                         className="w-full h-full" 
                         viewBox="0 0 100 16" 
