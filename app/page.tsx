@@ -6,27 +6,20 @@ import { useSearchParams } from 'next/navigation';
 import EnvelopeAnimation from '../components/EnvelopeAnimation';
 
 /**
- * INVITACIONES PERSONALIZADAS
+ * INVITACIONES PERSONALIZADAS CON SISTEMA DE PUESTOS
  *
  * Cómo generar links personalizados:
  *
- * Formato: https://tu-sitio.vercel.app?nombres=Nombre+del+Invitado&puestos=2
+ * Formato: https://tu-sitio.vercel.app/?nombres=Nombre+del+Invitado&puestos=2
  *
  * Ejemplos:
- * - https://tu-sitio.vercel.app?nombres=Juan+Pérez&puestos=1
- * - https://tu-sitio.vercel.app?nombres=María+y+Carlos+Rodríguez&puestos=2
- * - https://tu-sitio.vercel.app?nombres=Familia+González&puestos=4
+ * - https://invitacion-boda-mariela-alex.vercel.app/?nombres=Juan+Pérez&puestos=1
+ * - https://invitacion-boda-mariela-alex.vercel.app/?nombres=María+y+Carlos&puestos=2
+ * - https://invitacion-boda-mariela-alex.vercel.app/?nombres=Familia+González&puestos=4
  *
  * Parámetros:
  * - nombres: Nombre del invitado o invitados (requerido)
  * - puestos: Número de lugares asignados (opcional, por defecto 1)
- *
- * Para generar múltiples links:
- * 1. Crea un Excel/Google Sheets con tu lista de invitados
- * 2. Columna A: Nombres, Columna B: Puestos
- * 3. En columna C: =CONCATENAR("https://tu-sitio.vercel.app?nombres=", SUSTITUIR(A2, " ", "+"), "&puestos=", B2)
- * 4. Copia la fórmula para todos tus invitados
- * 5. Envía cada link personalizado por WhatsApp/Email
  */
 
 // Component that uses useSearchParams - must be wrapped in Suspense
@@ -1055,25 +1048,25 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <p className="font-montserrat text-base tracking-wide text-gray-800 font-semibold mb-4">
-                ESTA INVITACIÓN INCLUYE
+              <p className="font-montserrat text-lg tracking-wide text-gray-800 font-semibold mb-4 uppercase">
+                Esta Invitación Incluye
               </p>
               
-              <div className="bg-white/80 rounded-2xl p-6 mb-4 shadow-lg">
-                <div className="flex items-center justify-center gap-4">
-                  {/* Icono de personas más claro */}
+              <div className="bg-white/90 rounded-2xl p-6 mb-4 shadow-lg">
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  {/* Iconos de personas claros */}
                   <motion.div
-                    className="flex gap-1"
+                    className="flex gap-2"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
                     {Array.from({ length: Math.min(guestSeats, 5) }).map((_, index) => (
-                      <div key={index} className="text-4xl">
+                      <div key={index} className="text-5xl">
                         👤
                       </div>
                     ))}
                     {guestSeats > 5 && (
-                      <div className="text-4xl text-dorado font-bold">
+                      <div className="text-5xl text-dorado font-bold">
                         +{guestSeats - 5}
                       </div>
                     )}
@@ -1081,28 +1074,26 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
                 </div>
                 
                 <div className="mt-4">
-                  <p className="font-great-vibes text-6xl sm:text-7xl text-dorado drop-shadow-lg">
+                  <p className="font-great-vibes text-7xl text-dorado drop-shadow-lg mb-2">
                     {guestSeats}
                   </p>
-                  <p className="font-montserrat text-3xl sm:text-4xl text-dorado-dark font-bold mt-2">
-                    {guestSeats === 1 ? 'PUESTO' : 'PUESTOS'}
+                  <p className="font-montserrat text-4xl text-dorado-dark font-bold uppercase">
+                    {guestSeats === 1 ? 'Puesto' : 'Puestos'}
                   </p>
                 </div>
               </div>
               
               <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
               
-              <p className="font-montserrat text-sm text-gray-700 leading-relaxed">
+              <p className="font-montserrat text-base text-gray-700 leading-relaxed">
                 {guestSeats === 1 
                   ? '🎊 Esperamos tu presencia' 
-                  : guestSeats === 2
-                    ? '🎊 Esperamos la presencia de ambos'
-                    : `🎊 Esperamos la presencia de los ${guestSeats}`
+                  : `🎊 Esperamos la presencia de ${guestSeats === 2 ? 'ambos' : `los ${guestSeats}`}`
                 }
               </p>
               
               <div className="mt-4 bg-rojo-suave/20 rounded-xl p-3">
-                <p className="font-montserrat text-xs text-gray-600 italic">
+                <p className="font-montserrat text-sm text-gray-600 italic">
                   💡 Por favor confirma asistencia para {guestSeats === 1 ? 'tu puesto' : `tus ${guestSeats} puestos`}
                 </p>
               </div>
