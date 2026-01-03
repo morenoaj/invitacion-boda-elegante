@@ -8,6 +8,11 @@ interface EnvelopeAnimationProps {
   onAnimationComplete: () => void;
 }
 
+// Paper texture pattern for reuse
+const PAPER_TEXTURE_STYLE = {
+  backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.03) 2px, rgba(0,0,0,.03) 4px)`
+};
+
 export default function EnvelopeAnimation({ guestName, onAnimationComplete }: EnvelopeAnimationProps) {
   const [sealBroken, setSealBroken] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
@@ -105,9 +110,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                   >
                     <div className="w-full h-full bg-gradient-to-br from-white via-crema-light to-crema border-4 border-l-4 border-dorado/40 rounded-l-xl shadow-2xl">
                       {/* Textura de papel */}
-                      <div className="absolute inset-0 opacity-10 rounded-l-xl" style={{
-                        backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.03) 2px, rgba(0,0,0,.03) 4px)`
-                      }}></div>
+                      <div className="absolute inset-0 opacity-10 rounded-l-xl" style={PAPER_TEXTURE_STYLE}></div>
                       
                       {/* Borde decorativo interior */}
                       <div className="absolute inset-3 border border-dorado/20 rounded-l-lg"></div>
@@ -129,9 +132,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                   >
                     <div className="w-full h-full bg-gradient-to-br from-crema via-crema-light to-white border-4 border-r-4 border-dorado/40 rounded-r-xl shadow-2xl">
                       {/* Textura de papel */}
-                      <div className="absolute inset-0 opacity-10 rounded-r-xl" style={{
-                        backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.03) 2px, rgba(0,0,0,.03) 4px)`
-                      }}></div>
+                      <div className="absolute inset-0 opacity-10 rounded-r-xl" style={PAPER_TEXTURE_STYLE}></div>
                       
                       {/* Borde decorativo interior */}
                       <div className="absolute inset-3 border border-dorado/20 rounded-r-lg"></div>
