@@ -250,7 +250,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                       }}
                     >
                       {/* Sombra del sello */}
-                      <div className="absolute inset-0 bg-dorado-dark/50 rounded-full blur-2xl scale-130"></div>
+                      <div className="absolute inset-0 bg-dorado-dark/50 rounded-full blur-2xl scale-125"></div>
                       
                       {/* Sello de cera 3D */}
                       <motion.div
