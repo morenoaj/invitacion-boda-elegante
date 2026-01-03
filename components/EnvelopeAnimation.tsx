@@ -40,27 +40,27 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[100] bg-gradient-to-br from-crema via-white to-crema-dark flex items-center justify-center p-4"
+        className="fixed inset-0 z-[100] bg-gradient-to-br from-crema via-crema-light to-white flex items-center justify-center p-4 sm:p-8"
         initial={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Partículas sutiles de fondo */}
-        <div className="absolute inset-0">
-          {[...Array(8)].map((_, i) => (
+        {/* Partículas doradas sutiles */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(12)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-dorado/30 rounded-full"
               style={{
-                left: `${20 + Math.random() * 60}%`,
-                top: `${20 + Math.random() * 60}%`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
               }}
               animate={{
                 y: [0, -15, 0],
-                opacity: [0.3, 0.6, 0.3],
+                opacity: [0.3, 0.7, 0.3],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: 3 + Math.random(),
                 repeat: Infinity,
                 delay: Math.random() * 2,
               }}
@@ -68,182 +68,194 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
           ))}
         </div>
 
-        <div className="relative w-full max-w-2xl mx-auto">
+        {/* Contenedor principal del sobre */}
+        <div className="relative w-full max-w-2xl">
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            initial={{ scale: 0.9, opacity: 0, y: 30 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            {/* SOBRE RECTANGULAR SIMPLE Y ELEGANTE */}
-            <div className="relative w-full aspect-[7/4] max-w-3xl mx-auto">
+            {/* SOBRE - Estructura principal */}
+            <div className="relative w-full mx-auto" style={{ maxWidth: '700px' }}>
               
-              {/* CUERPO DEL SOBRE - Rectángulo limpio */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white to-crema-dark rounded-xl shadow-2xl border-2 border-dorado/30">
+              {/* Proporción del sobre: 3:2 (como sobre real) */}
+              <div className="relative w-full" style={{ paddingBottom: '66.67%' }}>
                 
-                {/* Borde decorativo interior simple */}
-                <div className="absolute inset-4 border border-dorado/20 rounded-lg"></div>
-
-                {/* CONTENIDO DEL SOBRE - Nombre del invitado */}
-                <motion.div
-                  className="absolute inset-0 flex flex-col items-center justify-center p-8"
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: isOpening ? 0 : 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="text-center space-y-4">
-                    <p className="font-montserrat text-sm tracking-[0.3em] text-dorado uppercase">
-                      Para
-                    </p>
+                {/* BASE DEL SOBRE (parte inferior/cuerpo) */}
+                <div className="absolute inset-0">
+                  <div className="w-full h-full bg-gradient-to-br from-white via-crema-light to-crema border-4 border-dorado/50 rounded-lg shadow-2xl">
                     
-                    <div className="h-px w-24 bg-gradient-to-r from-transparent via-dorado to-transparent mx-auto"></div>
+                    {/* Borde decorativo interior */}
+                    <div className="absolute inset-4 border border-dorado/30 rounded-md"></div>
                     
-                    <h2 className="font-great-vibes text-4xl sm:text-5xl md:text-6xl text-dorado px-4 leading-relaxed">
-                      {guestName}
-                    </h2>
-                    
-                    <div className="h-px w-24 bg-gradient-to-r from-transparent via-dorado to-transparent mx-auto"></div>
-                    
-                    <motion.p
-                      className="font-montserrat text-xs tracking-wide text-gray-500 italic mt-6"
-                      animate={{ opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                    {/* Contenido del sobre */}
+                    <motion.div
+                      className="absolute inset-0 flex flex-col items-center justify-center p-8"
+                      animate={{ opacity: isOpening ? 0 : 1 }}
+                      transition={{ duration: 0.5 }}
                     >
-                      💌 Abriendo invitación
-                    </motion.p>
+                      <p className="font-montserrat text-xs sm:text-sm tracking-[0.25em] text-dorado-dark uppercase mb-4">
+                        Para
+                      </p>
+                      
+                      <div className="w-24 h-px bg-gradient-to-r from-transparent via-dorado to-transparent mb-6"></div>
+                      
+                      <p className="font-great-vibes text-4xl sm:text-5xl lg:text-6xl text-dorado text-center px-6 leading-relaxed">
+                        {guestName}
+                      </p>
+                      
+                      <div className="w-24 h-px bg-gradient-to-r from-transparent via-dorado to-transparent mt-6 mb-4"></div>
+                      
+                      <motion.div
+                        className="flex items-center gap-2 mt-2"
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        <span className="text-2xl">💌</span>
+                        <p className="font-montserrat text-xs tracking-wide text-gray-500 italic">
+                          Abriendo...
+                        </p>
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Estampilla decorativa (esquina superior derecha) */}
+                    <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 border-2 border-dorado/40 bg-white/70 rounded flex items-center justify-center">
+                        <span className="text-xl sm:text-2xl">💕</span>
+                      </div>
+                    </div>
                   </div>
-                </motion.div>
-
-                {/* Decoración esquina - Estampilla simple */}
-                <div className="absolute top-4 right-4 w-12 h-12 sm:w-14 sm:h-14 border border-dorado/40 rounded-sm bg-white/50 flex items-center justify-center">
-                  <span className="text-2xl">💕</span>
                 </div>
-              </div>
 
-              {/* SOLAPA DEL SOBRE - Simple y elegante */}
-              <motion.div
-                className="absolute inset-x-0 top-0 h-1/2 flex items-start justify-center overflow-visible"
-                style={{
-                  transformOrigin: "top center",
-                  transformStyle: "preserve-3d",
-                }}
-                animate={{
-                  rotateX: isOpening ? -180 : 0,
-                }}
-                transition={{
-                  duration: 1.5,
-                  ease: [0.4, 0, 0.2, 1],
-                }}
-              >
-                {/* Solapa frontal */}
-                <div className="relative w-full h-full">
-                  {/* Parte rectangular superior de la solapa */}
-                  <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-br from-dorado via-dorado-light to-dorado rounded-t-xl border-2 border-dorado/60">
-                    
-                    {/* Triángulo de la solapa (parte que entra en el sobre) */}
-                    <div className="absolute bottom-0 left-0 right-0 h-16">
+                {/* SOLAPA DEL SOBRE (parte que se abre) */}
+                <div className="absolute inset-x-0 top-0 h-1/2">
+                  <motion.div
+                    className="relative w-full h-full origin-top"
+                    style={{ transformStyle: "preserve-3d" }}
+                    animate={{
+                      rotateX: isOpening ? -180 : 0,
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      ease: [0.34, 1.56, 0.64, 1],
+                    }}
+                  >
+                    {/* Parte frontal de la solapa */}
+                    <div className="absolute inset-0 w-full h-full">
+                      {/* Fondo dorado de la solapa */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-dorado-light via-dorado to-dorado-dark border-4 border-dorado/60 border-b-0 rounded-t-lg shadow-xl"></div>
+                      
+                      {/* Triángulo inferior de la solapa (forma de sobre típica) */}
                       <svg 
-                        className="w-full h-full" 
-                        viewBox="0 0 100 16" 
+                        className="absolute bottom-0 left-0 right-0 w-full"
+                        style={{ height: '40%' }}
+                        viewBox="0 0 100 20"
                         preserveAspectRatio="none"
                       >
                         <polygon 
-                          points="0,0 50,16 100,0" 
-                          fill="url(#flapGradient)"
+                          points="0,0 50,20 100,0" 
+                          fill="white"
+                          opacity="0.95"
                         />
-                        <defs>
-                          <linearGradient id="flapGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="#F5EFE7" stopOpacity="0.9"/>
-                            <stop offset="100%" stopColor="#FFF8F0" stopOpacity="0.95"/>
-                          </linearGradient>
-                        </defs>
+                        <line 
+                          x1="0" y1="0" 
+                          x2="50" y2="20" 
+                          stroke="#D4AF37" 
+                          strokeWidth="0.3"
+                          opacity="0.6"
+                        />
+                        <line 
+                          x1="100" y1="0" 
+                          x2="50" y2="20" 
+                          stroke="#D4AF37" 
+                          strokeWidth="0.3"
+                          opacity="0.6"
+                        />
                       </svg>
-                    </div>
 
-                    {/* Sello circular en el centro de la solapa */}
-                    <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20">
-                      <motion.div
-                        className="relative w-full h-full"
-                        animate={{ rotate: isOpening ? 180 : 0 }}
-                        transition={{ duration: 1.5 }}
-                      >
-                        {/* Círculo de fondo */}
-                        <div className="absolute inset-0 bg-white rounded-full shadow-lg border-2 border-rojo-suave/30"></div>
-                        
-                        {/* Contenido del sello */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center">
-                          <svg viewBox="0 0 100 100" className="w-8 h-8 fill-rojo-suave">
-                            <path d="M50,30 C50,30 35,25 30,35 C25,45 35,58 50,70 C65,58 75,45 70,35 C65,25 50,30 50,30 Z"/>
-                          </svg>
-                          <p className="font-great-vibes text-sm sm:text-base text-dorado mt-1">
-                            M & A
-                          </p>
-                        </div>
-                      </motion.div>
-                    </div>
+                      {/* Sello central "M & A" */}
+                      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                        <motion.div
+                          className="w-16 h-16 sm:w-20 sm:h-20"
+                          animate={{ rotate: isOpening ? 180 : 0 }}
+                          transition={{ duration: 1.5 }}
+                        >
+                          <div className="w-full h-full bg-white rounded-full border-3 border-white shadow-lg flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="text-2xl sm:text-3xl mb-1">💕</div>
+                              <p className="font-great-vibes text-lg sm:text-xl text-dorado">
+                                M & A
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </div>
 
-                    {/* Línea decorativa superior */}
-                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
-                  </div>
+                      {/* Línea decorativa superior */}
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-dorado-dark via-dorado-light to-dorado-dark"></div>
+                    </div>
+                  </motion.div>
                 </div>
-              </motion.div>
 
-              {/* Efecto de luz al abrir */}
+                {/* Efecto de luz al abrir */}
+                {isOpening && (
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-transparent pointer-events-none rounded-lg"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 0.8, 0] }}
+                    transition={{ duration: 1.5 }}
+                  />
+                )}
+              </div>
+
+              {/* Confeti al abrir */}
               {isOpening && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none rounded-xl overflow-hidden"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 0.5, 0] }}
-                  transition={{ duration: 1 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dorado/20 to-transparent"></div>
-                </motion.div>
+                <div className="absolute inset-0 pointer-events-none">
+                  {[...Array(25)].map((_, i) => {
+                    const angle = -90 + (Math.random() - 0.5) * 100;
+                    const distance = 100 + Math.random() * 150;
+                    const colors = ['#D4AF37', '#E5C158', '#D99999', '#FFF8F0'];
+                    
+                    return (
+                      <motion.div
+                        key={i}
+                        className="absolute left-1/2 top-[25%] w-2 h-2 rounded-full"
+                        style={{
+                          backgroundColor: colors[i % colors.length],
+                        }}
+                        initial={{ opacity: 1, scale: 0 }}
+                        animate={{
+                          opacity: [1, 1, 0],
+                          scale: [0, 1, 0.5],
+                          x: Math.cos(angle * Math.PI / 180) * distance,
+                          y: Math.sin(angle * Math.PI / 180) * distance,
+                          rotate: Math.random() * 720,
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          delay: Math.random() * 0.2,
+                          ease: "easeOut",
+                        }}
+                      />
+                    );
+                  })}
+                </div>
               )}
+
+              {/* Sombra realista */}
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[90%] h-8 bg-black/20 blur-2xl rounded-full"></div>
             </div>
 
-            {/* Confeti minimalista al abrir */}
-            {isOpening && (
-              <div className="absolute inset-0 pointer-events-none">
-                {[...Array(20)].map((_, i) => {
-                  const angle = -90 + (Math.random() - 0.5) * 60;
-                  const distance = 100 + Math.random() * 100;
-                  return (
-                    <motion.div
-                      key={i}
-                      className="absolute left-1/2 top-[30%] w-1.5 h-1.5 rounded-full"
-                      style={{
-                        backgroundColor: i % 2 === 0 ? '#D4AF37' : '#D99999',
-                      }}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{
-                        opacity: [0, 1, 0],
-                        scale: [0, 1, 0.5],
-                        x: Math.cos((angle * Math.PI) / 180) * distance,
-                        y: Math.sin((angle * Math.PI) / 180) * distance,
-                      }}
-                      transition={{
-                        duration: 1.2,
-                        delay: Math.random() * 0.2,
-                        ease: "easeOut",
-                      }}
-                    />
-                  );
-                })}
-              </div>
-            )}
-
-            {/* Sombra suave */}
-            <div className="absolute -inset-4 bg-black/5 blur-2xl -z-10 rounded-xl"></div>
+            {/* Texto inferior */}
+            <motion.p
+              className="text-center mt-12 font-great-vibes text-2xl sm:text-3xl text-dorado px-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 4, times: [0, 0.2, 0.7, 1] }}
+            >
+              Te esperamos con mucho cariño
+            </motion.p>
           </motion.div>
-
-          {/* Texto inferior */}
-          <motion.p
-            className="text-center mt-8 font-great-vibes text-2xl sm:text-3xl text-dorado px-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 1, 1, 0] }}
-            transition={{ duration: 4, times: [0, 0.2, 0.7, 1] }}
-          >
-            Con amor te invitamos ✨
-          </motion.p>
         </div>
       </motion.div>
     </AnimatePresence>
