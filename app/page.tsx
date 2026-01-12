@@ -595,14 +595,14 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
           {/* Iconos de Vestimenta */}
           <div className="flex justify-center gap-6 mb-6">
             <motion.div
-              className="text-6xl"
+              className="text-5xl sm:text-6xl"
               whileHover={{ scale: 1.2, rotate: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               👗
             </motion.div>
             <motion.div
-              className="text-6xl"
+              className="text-5xl sm:text-6xl"
               whileHover={{ scale: 1.2, rotate: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
