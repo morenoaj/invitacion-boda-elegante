@@ -137,7 +137,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
             transition={{ duration: 1.5 }}
           >
       {/* Hero Section - Foto Principal */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-10">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-3 py-8 sm:px-4 sm:py-10">
         {/* Decoraciones de fondo */}
         <motion.div
           className="absolute top-20 right-8 w-16 h-16 opacity-30"
@@ -196,8 +196,8 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
             <p className="font-montserrat text-sm tracking-widest text-gray-600 mb-3">
               CON CARIÑO INVITAMOS A
             </p>
-            <div className="bg-white/40 backdrop-blur-sm rounded-2xl py-4 px-6 shadow-lg border-2 border-dorado/20">
-              <p className="font-great-vibes text-5xl md:text-6xl text-dorado drop-shadow-lg">
+            <div className="bg-white/40 backdrop-blur-sm rounded-2xl py-3 px-4 sm:py-4 sm:px-6 shadow-lg border-2 border-dorado/20">
+              <p className="font-great-vibes text-4xl sm:text-5xl md:text-6xl text-dorado drop-shadow-lg">
                 {guestName}
               </p>
             </div>
@@ -217,7 +217,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
             <div className="absolute -inset-2 border-2 border-rojo-suave rounded-lg"></div>
             
             {/* Contenedor de la Foto */}
-            <div className="relative w-80 h-[28rem] sm:w-96 sm:h-[32rem] md:w-[28rem] md:h-[36rem] bg-gradient-to-br from-crema-dark to-white rounded-lg overflow-hidden shadow-2xl border-4 border-dorado">
+            <div className="relative w-72 h-96 sm:w-80 sm:h-[28rem] md:w-96 md:h-[32rem] lg:w-[28rem] lg:h-[36rem] bg-gradient-to-br from-crema-dark to-white rounded-lg overflow-hidden shadow-2xl border-4 border-dorado">
               {/* Placeholder para la foto */}
               <div className="w-full h-full flex flex-col items-center justify-center text-center p-8">
                <img 
@@ -279,9 +279,9 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
               ></motion.div>
               
               <div className="flex items-center gap-3">
-                <h1 className="font-great-vibes text-7xl sm:text-8xl text-dorado">Mariela</h1>
-                <span className="font-great-vibes text-4xl text-rojo-suave">&</span>
-                <h1 className="font-great-vibes text-7xl sm:text-8xl text-dorado">Alex</h1>
+                <h1 className="font-great-vibes text-5xl sm:text-6xl md:text-7xl text-dorado">Mariela</h1>
+                <span className="font-great-vibes text-3xl sm:text-4xl text-rojo-suave">&</span>
+                <h1 className="font-great-vibes text-5xl sm:text-6xl md:text-7xl text-dorado">Alex</h1>
               </div>
               
               <motion.div 
@@ -295,7 +295,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
 
           {/* Fecha del Evento */}
           <motion.div
-            className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-xl border-2 border-rojo-suave/30"
+            className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-xl border-2 border-rojo-suave/30"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -305,7 +305,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
               <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent"></div>
               <p className="font-montserrat text-3xl tracking-[0.3em] text-dorado font-semibold">14 FEBRERO</p>
               <div className="h-px bg-gradient-to-r from-transparent via-dorado to-transparent"></div>
-              <p className="font-montserrat text-lg tracking-widest text-dorado-dark">2 0 2 6</p>
+              <p className="font-montserrat text-2xl sm:text-3xl tracking-widest text-dorado-dark">2 0 2 6</p>
             </div>
           </motion.div>
 
@@ -451,7 +451,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
           </motion.div>
 
           <div className="space-y-4">
-            <h3 className="font-montserrat text-xl sm:text-2xl tracking-wider text-dorado-dark font-semibold">
+            <h3 className="font-montserrat text-lg sm:text-xl md:text-2xl tracking-wider text-dorado-dark font-semibold">
               CAPILLA SAN JUAN BOSCO
             </h3>
             
@@ -469,7 +469,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
               href="https://maps.app.goo.gl/wRSbX5ec3Zg6xg1r8"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 px-8 py-3 bg-gradient-to-r from-dorado to-dorado-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-block mt-4 px-6 py-2.5 sm:px-8 sm:py-3 bg-gradient-to-r from-dorado to-dorado-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -528,7 +528,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
           </motion.div>
 
           <div className="space-y-4">
-            <h3 className="font-montserrat text-xl sm:text-2xl tracking-wider text-dorado-dark font-semibold">
+            <h3 className="font-montserrat text-lg sm:text-xl md:text-2xl tracking-wider text-dorado-dark font-semibold">
               SALA EVA VICTORIA
             </h3>
             
@@ -546,7 +546,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
               href="https://maps.app.goo.gl/nt93jnNLpaHeqm1b6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 px-8 py-3 bg-gradient-to-r from-dorado to-dorado-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-block mt-4 px-6 py-2.5 sm:px-8 sm:py-3 bg-gradient-to-r from-dorado to-dorado-light text-white font-montserrat text-sm tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -595,14 +595,14 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
           {/* Iconos de Vestimenta */}
           <div className="flex justify-center gap-6 mb-6">
             <motion.div
-              className="text-6xl"
+              className="text-5xl sm:text-6xl"
               whileHover={{ scale: 1.2, rotate: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               👗
             </motion.div>
             <motion.div
-              className="text-6xl"
+              className="text-5xl sm:text-6xl"
               whileHover={{ scale: 1.2, rotate: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -689,7 +689,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-lg border-2 border-dorado/20 flex items-center gap-4"
+                className="bg-white/60 backdrop-blur-sm rounded-xl p-3 gap-3 sm:p-4 sm:gap-4 shadow-lg border-2 border-dorado/20 flex items-center"
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -824,7 +824,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
 
           {/* Grid de Galería */}
           {/* Para agregar tus fotos: Coloca las imágenes en /public/images/gallery/ con los nombres foto-1.jpg, foto-2.jpg, etc. */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4 px-4">
             {/* Foto 1 */}
             <motion.div
               className="relative aspect-square overflow-hidden rounded-lg shadow-lg border-4 border-dorado/30 group"
@@ -1042,7 +1042,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
           <div className="space-y-6">
             {/* Información de puestos - MEJORADA */}
             <motion.div
-              className="bg-gradient-to-br from-dorado/20 via-white to-rojo-suave/20 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border-4 border-dorado/40"
+              className="bg-gradient-to-br from-dorado/20 via-white to-rojo-suave/20 backdrop-blur-sm rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border-4 border-dorado/40"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -1074,7 +1074,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
                 </div>
                 
                 <div className="mt-4">
-                  <p className="font-great-vibes text-7xl text-dorado drop-shadow-lg mb-2">
+                  <p className="font-great-vibes text-5xl sm:text-6xl md:text-7xl text-dorado drop-shadow-lg mb-2">
                     {guestSeats}
                   </p>
                   <p className="font-montserrat text-4xl text-dorado-dark font-bold uppercase">
@@ -1113,7 +1113,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
                 href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola, lamentablemente no podré asistir a su boda. Les deseo lo mejor en este día tan especial 💕")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-gray-400 to-gray-500 text-white font-montserrat text-base font-semibold tracking-wider rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-4 sm:px-8 sm:py-4 md:px-10 md:py-5 bg-gradient-to-r from-gray-400 to-gray-500 text-white font-montserrat text-base font-semibold tracking-wider rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -1126,7 +1126,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
                 href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("¡Hola! Con mucha alegría confirmo que asistiré a celebrar su amor el 14 de febrero. ¡Nos vemos allá! 🎉💕")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-rojo-suave to-rojo-suave-light text-white font-montserrat text-base font-semibold tracking-wider rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-dorado/30"
+                className="flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-4 sm:px-8 sm:py-4 md:px-10 md:py-5 bg-gradient-to-r from-rojo-suave to-rojo-suave-light text-white font-montserrat text-base font-semibold tracking-wider rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-dorado/30"
                 whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(212, 175, 55, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
               >

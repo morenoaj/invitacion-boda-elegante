@@ -92,7 +92,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
           <div className="relative w-full mx-auto">
             <div 
               className="relative w-full bg-gradient-to-br from-white via-crema-light to-crema rounded-2xl shadow-2xl border-4 border-dorado/40 overflow-hidden"
-              style={{ aspectRatio: '16/10' }}
+              style={{ aspectRatio: '16/11' }}
             >
               {/* Textura de papel sutil */}
               <div className="absolute inset-0 opacity-[0.05]" style={{
@@ -124,7 +124,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
               </div>
 
               {/* Contenido de la carta */}
-              <div className="relative h-full flex flex-col items-center justify-center px-6 sm:px-12 py-8 sm:py-12">
+              <div className="relative h-full flex flex-col items-center justify-center px-4 sm:px-8 md:px-12 py-6 sm:py-10 md:py-12">
                 
                 {/* Espacio para el sello (top) */}
                 <div className="h-16 sm:h-20"></div>
@@ -157,7 +157,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                     {/* Brillo sutil detrás del nombre */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-dorado/10 to-transparent rounded-lg"></div>
                     
-                    <p className="relative font-great-vibes text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-dorado leading-relaxed">
+                    <p className="relative font-great-vibes text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-dorado leading-relaxed">
                       {guestName}
                     </p>
                   </div>
@@ -218,7 +218,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                       
                       {/* Sello de cera principal */}
                       <motion.div
-                        className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full"
+                        className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full"
                         style={{
                           background: 'radial-gradient(circle at 35% 35%, #E5C158, #D4AF37 45%, #B8860B)',
                           boxShadow: `
@@ -270,7 +270,7 @@ export default function EnvelopeAnimation({ guestName, onAnimationComplete }: En
                     </motion.div>
                   ) : (
                     // Fragmentos del sello roto
-                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28">
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28">
                       {[...Array(12)].map((_, i) => {
                         const angle = (i * 360) / 12;
                         const distance = 50 + Math.random() * 60;
