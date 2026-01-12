@@ -681,11 +681,11 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
           {/* Timeline */}
           <div className="space-y-6 px-4">
             {[
-              { time: "6:00 PM", icon: "💒", event: "Ceremonia religiosa" },
-              { time: "7:30 PM", icon: "🥂", event: "Cóctel de bienvenida" },
+              { time: "4:00 PM", icon: "💒", event: "Ceremonia religiosa" },
+              { time: "7:00 PM", icon: "🥂", event: "Cóctel de bienvenida" },
               { time: "9:30 PM", icon: "🍽️", event: "Recepción y cena" },
               { time: "10:00 PM", icon: "💃", event: "Baile y fiesta" },
-              { time: "2:00 AM", icon: "🎆", event: "Cierre" }
+              { time: "12:00 AM", icon: "🎆", event: "Cierre" }
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -1103,7 +1103,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
             <p className="font-montserrat text-lg sm:text-xl tracking-wide text-gray-700 leading-relaxed px-4 font-medium">
               APRECIARÍAMOS QUE NOS DEJES SABER TU ASISTENCIA<br/>
               A MÁS TARDAR EL DÍA<br/>
-              <span className="text-dorado font-semibold text-2xl sm:text-3xl">10 DE ENERO</span>
+              <span className="text-dorado font-semibold text-2xl sm:text-3xl">17 DE ENERO</span>
             </p>
 
             {/* Dos botones de confirmación - ORDEN ACTUALIZADO */}
