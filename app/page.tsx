@@ -462,7 +462,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
             </p>
             
             <p className="font-montserrat text-2xl sm:text-3xl font-bold tracking-widest text-dorado mt-4">
-              6 : 0 0  &nbsp; P . M .
+              4 : 0 0  &nbsp; P . M .
             </p>
 
             <motion.a
