@@ -217,7 +217,7 @@ function InvitationContent({ guestName, guestSeats }: { guestName: string; guest
             <div className="absolute -inset-2 border-2 border-rojo-suave rounded-lg"></div>
             
             {/* Contenedor de la Foto */}
-            <div className="relative w-72 h-96 sm:w-80 sm:h-[28rem] md:w-96 md:h-[32rem] lg:w-[28rem] lg:h-[36rem] bg-gradient-to-br from-crema-dark to-white rounded-lg overflow-hidden shadow-2xl border-4 border-dorado">
+            <div className="relative w-full max-w-[280px] h-96 sm:w-80 sm:h-[28rem] sm:max-w-none md:w-96 md:h-[32rem] lg:w-[28rem] lg:h-[36rem] bg-gradient-to-br from-crema-dark to-white rounded-lg overflow-hidden shadow-2xl border-4 border-dorado">
               {/* Placeholder para la foto */}
               <div className="w-full h-full flex flex-col items-center justify-center text-center p-8">
                <img 
